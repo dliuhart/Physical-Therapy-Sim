@@ -28,11 +28,11 @@ function billme()
 		 var  THETATNH=parseInt(v8)*Math.PI/180;
 		 var  THETAAH=parseInt(v9)*Math.PI/180;
 
-		 var KG=0.5*H;
-		 var KJ=0.7*0.5*H;
-		 var KF=0.85*KG;
-		 var GP=0.4*H;
-         var GH=0.4*GP;
+		 var KG=0.295*H;
+		 var KJ=0.6*0.295*H;
+		 var KF=0.67*KG;
+		 var GP=0.389*H;
+         var GH=0.412*GP;
          
          
 
