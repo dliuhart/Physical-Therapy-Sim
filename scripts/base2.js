@@ -60,7 +60,7 @@ function billme()
             var JRFV=order.subtotalBox.value*Math.cos(THETATNH+es)+W*0.545+W*0.107+WL;
 
 
-            order.LATNH.value = 50;
+            //order.LATNH.value = 50;
     //order.LATNH.value=LATNH;
 			order.LAWAH.value=LAWAH;
 			order.LAWL.value=LAWL;
