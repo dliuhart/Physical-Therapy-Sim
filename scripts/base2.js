@@ -39,10 +39,10 @@ function billme()
 		var   LATNH=KJ* Math.sin(THETATNH);
 		//var   LATNH=  H;
 		
-        var   LAWAH= KG*Math.sin(THETATNH)+GP*Math.sin(THETAAH);
+        var   LAWAH= KG*Math.sin(THETATNH)+GH*Math.sin(THETAAH);
         //var   LAWAH= GP;
          //var   WL= parseInt(v4);
-        var LAWL = KG * Math.sin(THETATNH) + GH * Math.sin(THETAAH);
+        var LAWL = KG * Math.sin(THETATNH) + GP * Math.sin(THETAAH);
         var es = 0.087266
         var LAES = KF * Math.sin(es);
         
