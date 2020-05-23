@@ -17,16 +17,16 @@ function billme()
 
         //These lines define the variables.
         
-         var   W= parseInt(v1);
+         var   W= parseFloat(v1);
          //var   LATNH= parseInt(v2);
          //var   LAWAH= parseInt(v3);
-         var   WL= parseInt(v4);
+         var   WL= parseFloat(v4);
         // var   LAWL= parseInt(v5);
         // var   LAES= parseInt(v6);
 
 		 var  H=parseFloat(v7);
-		 var  THETATNH=parseInt(v8)*Math.PI/180;
-		 var  THETAAH=parseInt(v9)*Math.PI/180;
+		 var  THETATNH=parseFloat(v8)*Math.PI/180;
+		 var  THETAAH=parseFloat(v9)*Math.PI/180;
 
 		 var KG=0.295*H;
 		 var KJ=0.6*0.295*H;
@@ -60,8 +60,8 @@ function billme()
             var JRFV=order.subtotalBox.value*Math.cos(THETATNH+es)+W*0.545+W*0.107+WL;
 
 
-            //order.LATNH.value = 50;
-    //order.LATNH.value=LATNH;
+           // order.LATNH.value = 50;
+            order.LATNH.value=LATNH;
 			order.LAWAH.value=LAWAH;
 			order.LAWL.value=LAWL;
             order.LAES.value=LAES;
