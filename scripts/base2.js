@@ -43,7 +43,7 @@ function billme()
         //var   LAWAH= GP;
          //var   WL= parseInt(v4);
         var LAWL = KG * Math.sin(THETATNH) + GP * Math.sin(THETAAH);
-        var es = 0.20944  // for 12 degree
+        var es = 12*Math.PI/180  // for 12 degree
         var LAES = KF * Math.sin(es);
         
 
