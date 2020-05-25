@@ -30,7 +30,7 @@ function billme()
 
 		 var KG=0.295*H;
 		 var KJ=0.6*0.295*H;
-		 var KF=0.67*KG;
+		 var KF=0.667*KG;
 		 var GP=0.389*H;
          var GH=0.412*GP;
          
@@ -39,7 +39,7 @@ function billme()
 		var   LATNH=KJ* Math.sin(THETATNH);
 		//var   LATNH=  H;
 		
-        var   LAWAH= KG*Math.sin(THETATNH)+GH*Math.sin(THETAAH);
+        var   LAWAH= KG*Math.sin(THETATNH)+GH*Math.sin(THETAAH); // In html, it is LAAH 
         //var   LAWAH= GP;
          //var   WL= parseInt(v4);
         var LAWL = KG * Math.sin(THETATNH) + GP * Math.sin(THETAAH);
