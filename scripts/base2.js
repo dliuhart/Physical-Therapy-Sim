@@ -43,7 +43,7 @@ function billme()
         //var   LAWAH= GP;
          //var   WL= parseInt(v4);
         var LAWL = KG * Math.sin(THETATNH) + GP * Math.sin(THETAAH);
-        var es = 0.087266
+        var es = 0.20944  // for 12 degree
         var LAES = KF * Math.sin(es);
         
 
@@ -52,7 +52,7 @@ function billme()
         //These lines make sure that variables 1, 2, and 3 are numbers.
             order.WTNH.value= W*0.545
 			order.WAH.value= W*0.107
-			order.THETAES.value = 5;
+			order.THETAES.value = 12;
     //order.THETAES.value = 0.5 * THETATNH;
             order.subtotalBox.value= (W*0.545*LATNH+W*0.107*LAWAH+WL*LAWL)/LAES
 
