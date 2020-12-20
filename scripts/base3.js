@@ -36,7 +36,7 @@ function billme()
          
          
 
-		var   LATNH=KJ* Math.sin(THETATNH);
+//		var   LATNH=KJ* Math.sin(THETATNH);
 		//var   LATNH=  H;
 		
  //       var   LAWAH= KG*Math.sin(THETATNH)+GH*Math.sin(THETAAH); // In html, it is LAAH 
