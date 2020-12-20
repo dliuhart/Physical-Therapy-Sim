@@ -10,8 +10,8 @@ function billme()
         //var v6= document.order.LAES.value;
 
 		var v7= document.order.H.value;
-		var v8=document.order.THETATNH.value;
-		var v9=document.order.THETAAH.value;
+//		var v8=document.order.THETATNH.value;
+//		var v9=document.order.THETAAH.value;
 
 		
 
@@ -25,8 +25,8 @@ function billme()
         // var   LAES= parseInt(v6);
 
 		 var  H=parseFloat(v7);
-		 var  THETATNH=parseFloat(v8)*Math.PI/180;
-		 var  THETAAH=parseFloat(v9)*Math.PI/180;
+//		 var  THETATNH=parseFloat(v8)*Math.PI/180;
+//		 var  THETAAH=parseFloat(v9)*Math.PI/180;
   
 //		 var KG=0.295*H;
 //		 var KJ=0.6*0.295*H;
