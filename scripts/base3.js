@@ -63,7 +63,7 @@ function billme()
 
 
            // order.LATNH.value = 50;
-            order.LATNH.value=LATNH;
+//            order.LATNH.value=LATNH;
 			order.LAWAH.value=LAWAH;
 			order.LAWL.value=LAWL;
             order.LAES.value=LAES;
@@ -71,7 +71,7 @@ function billme()
             //order.JRF.value=Math.sqrt(160.07095516597434109.0000000000000121.220);
             //order.JRF.value=order.WTNH.value+order.WAH.value+WL;
 
-			document.order.WTNH.value=document.order.WTNH.value
+//			document.order.WTNH.value=document.order.WTNH.value
 			document.order.WAH.value=document.order.WAH.value
 			document.order.subtotalBox.value=document.order.subtotalBox.value
             //document.order.THETAES.value=document.order.THETAES.value
