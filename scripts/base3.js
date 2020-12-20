@@ -52,7 +52,7 @@ function billme()
         
 
         //These lines make sure that variables 1, 2, and 3 are numbers.
-            order.WTNH.value= W*0.545
+//            order.WTNH.value= W*0.545
 			order.WAH.value= W*0.048
 			//order.THETAES.value = 12;
     //order.THETAES.value = 0.5 * THETATNH;
