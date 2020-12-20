@@ -81,10 +81,10 @@ function billme()
 
        
         
-        //These lines assign function to the checkbox.
+//        //These lines assign function to the checkbox.
         
         
-            if (document.order.discountRB[0].checked) {
+ /*           if (document.order.discountRB[0].checked) {
                 document.order.savingsBox.value= ((v1*5)+(v2*5.25)+(v3*5.00)+(v4*5.10)+(v5*5.95)+(v6*4.50)+(v7*3.50))*0.1
             }
             else if (document.order.discountRB[1].checked) {
@@ -94,5 +94,5 @@ function billme()
                 document.order.savingsBox.value= 0
                 }
         //These lines define what should be displayed in the discount box.
-        
+  */
         }
