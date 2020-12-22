@@ -95,6 +95,21 @@
                         <a href="images/arm.jpg" download>
                             <img src="images/arm.jpg" alt="" class="img-responsive" width="80%" height="80%" align="middle">
                         </a>
+			<div id="canvasesdiv" style="position:relative; display:block; margin:auto; width:660px; height:470px"></div>
+    <canvas id="myCanvas" style="display: block; position: absolute; margin: 0 auto;display: block;
+        position: absolute; margin: 0 auto; top: 0; bottom: 0; left: 0; right: 0;" width="660" height="470"></canvas>
+    <div id="buttons">
+      <input type="button" id="play" value="Play" onclick="play()">
+      <input type="button" id="pause" value="Pause" onclick="pause()">
+      <input type="button" id="stepback" value="<< Step" onclick="stepBack()">
+      <input type="button" id="stepforward" value="Step >>" onclick="stepForward()">
+      <input type="button" id="reset" value="Reset" onclick="reset()">
+    </div>
+    <div id="moreButtons">Graph:
+      <input type="button" id="graph1" value="Displacement" onclick="displacementGraph()">
+      <input type="button" id="graph2" value="Velocity" onclick="velocityGraph()">
+      <input type="button" id="graph3" value="Acceleration" onclick="accelerationGraph()">
+   </div>
                          <script>
 
 // Simulation first posted on 10-4-2017, written by Andrew Duffy
