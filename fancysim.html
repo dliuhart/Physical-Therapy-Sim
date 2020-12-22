@@ -625,8 +625,10 @@ function whereClicked(x_,y_,what_) {    // underscore denotes local variables
 }
 
 function myMove(event){
-	var xClick = event.pageX - canvasesdiv.offsetLeft;
-	var yClick = event.pageY - canvasesdiv.offsetTop;
+	var canvas=document.getElementById('myCanvas');
+	var BB=canvas.getBoundingClientRect();
+	var xClick = event.clientX - BB.left;
+	var yClick = event.clientY - BB.top;
 	whereClicked(xClick,yClick,'move');
 //	drawAll();
 //	drawMotion();
@@ -637,8 +639,6 @@ function myDown(event){
 	// get the current canvas offsets using getBoundingClientRect
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
-	//var offsetX=BB.left;
-	//var offsetY=BB.top;
 	//var xClick = event.pageX - canvasesdiv.offsetLeft;
 	var xClick = event.clientX - BB.left;
 	//var yClick = event.pageY - canvasesdiv.offsetTop;
@@ -649,8 +649,10 @@ function myDown(event){
 }
 
 function myUp(event){
-	var xClick = event.pageX - canvasesdiv.offsetLeft;
-	var yClick = event.pageY - canvasesdiv.offsetTop;
+	var canvas=document.getElementById('myCanvas');
+	var BB=canvas.getBoundingClientRect();
+	var xClick = event.clientX - BB.left;
+	var yClick = event.clientY - BB.top;
 	whereClicked(xClick,yClick,'up');
 	canvas.onmousemove = null;
 //	drawMotion();
@@ -658,24 +660,32 @@ function myUp(event){
 
 function myTouchMove(event){
 	event.preventDefault();
-	var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
-	var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	var canvas=document.getElementById('myCanvas');
+	var BB=canvas.getBoundingClientRect();
+	//var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
+	var xClick = event.targetTouches[0].pageX - BB.left;
+	//var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	var yClick = event.targetTouches[0].pageY - BB.top;
 	whereClicked(xClick,yClick,'move');
 //	drawMotion();
 }
 
 function myTouchStart(event){
 	event.preventDefault();
-	var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
-	var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	var canvas=document.getElementById('myCanvas');
+	var BB=canvas.getBoundingClientRect();
+	var xClick = event.targetTouches[0].pageX - BB.left;
+	var yClick = event.targetTouches[0].pageY - BB.top;
 	whereClicked(xClick,yClick,'down');
 //	drawMotion();
 }
 
 function myTouchEnd(event){
 	event.preventDefault();
-	var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
-	var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	var canvas=document.getElementById('myCanvas');
+	var BB=canvas.getBoundingClientRect();
+	var xClick = event.targetTouches[0].pageX - BB.left;
+	var yClick = event.targetTouches[0].pageY - BB.top;
 	whereClicked(xClick,yClick,'up');
 //	drawMotion();
 }
