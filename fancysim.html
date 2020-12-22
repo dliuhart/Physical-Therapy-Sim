@@ -190,8 +190,7 @@
       var musliderValueMax = 1.0;
       var musliderValue = mu;
       var musliderDecimals = 3;
-var armonly=new Image();
-armonly.src = "images/Armonly.png";
+
       reset();
 
     function drawMotion() {
@@ -241,7 +240,7 @@ armonly.src = "images/Armonly.png";
                context.drawImage(armless,0, 0, 326, 200);
              }
 	armless.src = "images/Armless.png";
-//	var armonly=new Image();
+	var armonly=new Image();
 	armonly.onload = function(){
 		context.save();
 		context.translate(26,104);
@@ -250,7 +249,7 @@ armonly.src = "images/Armonly.png";
                context.drawImage(armonly,0, 0, 326, 200);
 		context.restore();
              }
-//	armonly.src = "images/Armonly.png";	      
+	armonly.src = "images/Armonly.png";	      
 
 // draw the block
            context.save();
