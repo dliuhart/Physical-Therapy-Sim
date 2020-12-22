@@ -634,8 +634,15 @@ function myMove(event){
 }
 
 function myDown(event){
-	var xClick = event.pageX - canvasesdiv.offsetLeft;
-	var yClick = event.pageY - canvasesdiv.offsetTop;
+	/ get the current canvas offsets using getBoundingClientRect
+	var canvas=document.getElementById('myCanvas');
+	var BB=canvas.getBoundingClientRect();
+	//var offsetX=BB.left;
+	//var offsetY=BB.top;
+	//var xClick = event.pageX - canvasesdiv.offsetLeft;
+	var xClick = event.clientX - BB.left;
+	//var yClick = event.pageY - canvasesdiv.offsetTop;
+	var yClick = event.clientY - BB.top;
 	whereClicked(xClick,yClick,'down');
 	canvas.onmousemove = myMove;
 //	drawMotion();
