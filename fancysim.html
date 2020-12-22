@@ -237,15 +237,15 @@
            context.fillRect(xBase2, yBase2, 40*graphX, 40*graphY);
 //Load the arm and torso images
 	var armless=new Image();
-	img.onload = function(){
-               ctx.drawImage(img,0, 0);
+	armless.onload = function(){
+               ctx.drawImage(armless,0, 0);
              }
-	img.src = "images/armless.png";
+	armless.src = "images/armless.png";
 	var armonly=new Image();
-	img.onload = function(){
-               ctx.drawImage(img,0, 0);
+	armonly.onload = function(){
+               ctx.drawImage(armonly,0, 0);
              }
-	img.src = "images/armonlyl.png";	      
+	armonly.src = "images/armonlyl.png";	      
 
 // draw the block
            context.save();
