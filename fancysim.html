@@ -190,13 +190,14 @@
       var musliderValueMax = 1.0;
       var musliderValue = mu;
       var musliderDecimals = 3;
-var armonly=new Image().src = "images/Armless.png";
-var armless=new Image();
+var armonly=new Image().src = "images/Armonly.png";
+var armless=new Image().src = "images/Armless.png";
 armless.onload = function(){
                context.drawImage(armless,0, 0, 326, 200);
-	drawmotion();
+
      }
 	armless.src = "images/Armless.png";
+				 
       reset();
 
     function drawMotion() {
@@ -255,7 +256,7 @@ armless.onload = function(){
                context.drawImage(armonly,0, 0, 326, 200);
 		context.restore();
              }
-	armonly.src = "images/Armonly.png";	      
+//	armonly.src = "images/Armonly.png";	      
 
 // draw the block
            context.save();
