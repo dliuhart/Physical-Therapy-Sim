@@ -1,1 +1,806 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Simulation of a Shoulder I</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- start plugins -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!----font-Awesome----->
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+    <!----font-Awesome----->
+    <style>
+        table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div class="header_bg1">
+        <div class="container">
+            <div class="row header">
+                <div class="logo navbar-left">
+                    <h1 style="color:whitesmoke;">University of Hartford Physical Therapy Simulation</h1>
+                </div>
+              <!--  <div class="h_search navbar-right">
+                    <form>
+                        <input type="text" class="text" value="Enter text here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter text here';}">
+                        <input type="submit" value="search">
+                    </form>
+                </div> -->
+                <div class="clearfix"></div>
+            </div>
+            <div class="row h_menu">
+                <nav class="navbar navbar-default navbar-left" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <!--<li><a href="index.html">Home</a></li>-->
+                            <li ><a href="index.html">Simulation I</a></li>
+                            <li ><a href="sim2.html">Simulation II</a></li>
+                            <li class="active"><a href="sim3.html">Simulation III</a></li> <!--
+    <li><a href="contact.html">Contact</a></li>-->
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                    <!-- start soc_icons -->
+                </nav>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="main_bg">
+        <!-- start main -->
+        <div class="container">
+            <div class="about row">
+                <h2>Simulation of a Shoulder I</h2>
+                <p class="para">
+                    <font color="red">Objectives:</font> 
+                    muscle
+                    &nbsp    1.	Apply the conditions of equilibrium to determine the amount of force that is exerted by the person’s deltoid  F<sub>deltoid</sub> when the person holds a ball with the arm horizontally.
+                    &nbsp 2.	Calculate the magnitude and direction of the force on the shoulder.
+                    &nbsp 3.	Find out how F<sub>deltoid</sub> and the force on the person’s shoulder depend on the mass of the ball.
+
+</p>
+                <!-- <a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a> -->
+            </div>
+        </div>
+    </div><!-- end main -->
+    <div class="main_btm">
+        <!-- start main_btm -->
+        <div class="container">
+            <div class="main row">
+                
+                <div class="col-md-6 content_right">
+          
+                        <a href="images/arm.jpg" download>
+                            <img src="images/arm.jpg" alt="" class="img-responsive" width="80%" height="80%" align="middle">
+                        </a>
+                         <script>
+
+// Simulation first posted on 10-4-2017, written by Andrew Duffy
+
+
+
+      function reset() {
+        window.clearTimeout(timer);
+        index = -1;
+        time = 0.0;
+        thetasliderValue = thetasliderValueMin + (thetasliderValueMax-thetasliderValueMin)*(thetasliderX-thetasliderXMin)/(thetasliderXMax-thetasliderXMin);
+        theta = thetasliderValue;
+        if (thetaMax < theta) thetaMax = theta;
+        musliderValue = musliderValueMin + (musliderValueMax-musliderValueMin)*(musliderX-musliderXMin)/(musliderXMax-musliderXMin);
+        mu = musliderValue;
+
+        runFlag = 1;
+        drawMotion();
+
+      }
+
+
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      canvas.onmousedown = myDown;							// mouse event handler for computer browsers
+	  canvas.onmouseup = myUp;								// mouse event handler for computer browsers
+	  canvas.addEventListener("touchstart", myTouchStart, false);	// touch handler for iPhones, iPads, and Androids
+	  canvas.addEventListener("touchmove", myTouchMove, false);	// touch handler for iPhones, iPads, and Androids
+	  canvas.addEventListener("touchend", myTouchEnd, false);		// touch handler for iPhones, iPads, and Androids
+      var index = -1;
+
+      var xBase = 640;     // for the drawing
+      var xBase2 = 100;   // for the graph
+      var yBase = 160;     // for the drawing
+      var yBase2 = 90;    // for the graph
+      var xInit = 37;
+      var graphType = 1;
+      var graphTitle = 'Friction on an incline';
+      var yAxisTitle = 'Force (N)';
+      var xAxisTitle = 'Angle';
+      var rampYAxisTitle = 'Height (cm)';
+      var rampXAxisTitle = 'Length (cm)';
+      var xIncrement = 10;
+      var xNumDecimals = 0;
+      var yIncrement = 0.25;
+      var yNumDecimals = 2;
+      var graphY = 4;
+      var graphX = 9;
+      var yStart = yBase+120;
+      var plotColor = '#ff00ff';
+      var xAxisOffset = 0.0;
+      var xMajorTicks = 10;
+      var xDecimals = 0;
+      var graphLabel = 'Forces vs. angle';
+      var xAxisLabel = 'Angle';
+      var yAxisLabel = 'Force (N)';
+      var yMajorTicks = 0.25;
+      var yDecimals = 2;
+
+      var scenario = 1;
+      var ePotential = 0;
+      var eKinetic = 0;
+      var eTotal = 0;
+      var eThermal = 0;
+      var radius = 8;
+      var time = 0.0;
+      var deltat = 1/20.0;
+      var timer;
+      var runFlag = 1;
+      var theta = 0.0;
+      var thetaMin = 0.0;
+      var thetaMax = 0.0;
+      var mu = 0.5;
+
+      var thetasliderX = 420;
+      var thetasliderY = 340;
+      var thetasliderXMin = 420;
+      var thetasliderXMax = 600;
+      var thetasliderValueMin = 0.0;
+      var thetasliderValueMax = 90.0;
+      var thetasliderValue = theta;
+      var thetasliderDecimals = 1;
+
+      var musliderX = 210;
+      var musliderY = 340;
+      var musliderXMin = 110;
+      var musliderXMax = 310;
+      var musliderValueMin = 0.0;
+      var musliderValueMax = 1.0;
+      var musliderValue = mu;
+      var musliderDecimals = 3;
+
+
+      reset();
+
+    function drawMotion() {
+
+  //    console.log("In the drawMotion function, with runFlag = " + runFlag );
+
+ //     if ((index >= 1000) || (time >= rampTime1)) runFlag = 0;
+
+  //    console.log("In the drawMotion function, with runFlag = " + runFlag + " Fx = " + Fx);
+
+      if (runFlag == 1) {    //      run if runFlag equal 1, not if equal 0
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        index = index + 1;
+
+        // set background color for the entire thing
+           context.fillStyle = "#ffd";
+           context.fillRect(0, 0, canvas.width, canvas.height);
+
+       // draw theta slider
+
+           drawSlider(thetasliderX, thetasliderY, thetasliderXMin, thetasliderXMax, thetasliderValueMin, thetasliderValueMax, thetasliderValue, thetasliderDecimals);
+           var sLabel = 'Angle = ';
+           sLabel = sLabel + thetasliderValue.toFixed(thetasliderDecimals) + ' degrees';
+           context.font = '16pt Calibri';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           context.fillStyle = 'black';
+           context.fillText(sLabel,thetasliderXMin+0.5*(thetasliderXMax-thetasliderXMin), thetasliderY-25);
+
+           drawSlider(musliderX, musliderY, musliderXMin, musliderXMax, musliderValueMin, musliderValueMax, musliderValue, musliderDecimals);
+           var sLabel = 'mu = ';
+           sLabel = sLabel + musliderValue.toFixed(musliderDecimals) + ' ';
+           context.font = '16pt Calibri';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           context.fillStyle = 'black';
+           context.fillText(sLabel,musliderXMin+0.5*(musliderXMax-musliderXMin), musliderY-25);
+
+        // set background color for the graph
+           context.fillStyle = "#eff";
+           context.fillRect(xBase2, yBase2, 40*graphX, 40*graphY);
+
+
+// draw the block
+           context.save();
+           context.translate(xBase, yBase);
+           context.rotate(theta*Math.PI/180.0);
+           context.beginPath();
+           context.fillStyle = "#c95";
+           context.fillRect(-25, -25, 50, 50);
+           context.beginPath();
+           context.moveTo(-95, 25);
+           context.lineTo(90, 25);
+           if (mu >= Math.tan(Math.PI*theta/180.0)) {
+             context.strokeStyle = "black";
+           }
+           else {
+             context.strokeStyle = "red";
+           }
+           context.lineWidth = 4;
+           context.stroke();
+           context.restore();
+
+// draw the arrows on the free-body diagram
+           var angle = Math.PI*theta/180.0;
+           drawArrow(-16*Math.cos(angle)*Math.sin(angle),-16*Math.cos(angle)*Math.cos(angle),xBase,yBase, "#292");  // mg cos theta
+           drawArrow(16*Math.cos(angle)*Math.sin(angle),16*Math.cos(angle)*Math.cos(angle),xBase,yBase, "blue");  // normal force
+           drawArrow(16*Math.sin(angle)*Math.cos(angle),-16*Math.sin(angle)*Math.sin(angle),xBase,yBase, "purple");  // mg sin theta
+           if (mu >= Math.tan(angle)) {
+             drawArrow(-16*Math.sin(angle)*Math.cos(angle),16*Math.sin(angle)*Math.sin(angle),xBase,yBase, "red");  // friction
+           }
+           else {
+             drawArrow(-16*mu*Math.cos(angle)*Math.cos(angle),16*mu*Math.cos(angle)*Math.sin(angle),xBase,yBase, "red");  // friction instead
+           }
+
+// here's the ball code
+//           context.arc(xBase+2*x1, yBase+80-2*H1-radius-2+2*y1, radius, 0, 2 * Math.PI, false);
+//           context.fillStyle = '#00f';
+//           context.fill();
+//           context.stroke();
+
+//         draw the actual graphs
+
+           context.lineWidth = 4;
+
+           drawAxes (xBase2, yBase2, graphX, graphY, xAxisOffset, xMajorTicks, yMajorTicks, xDecimals, yDecimals, xAxisLabel, yAxisLabel, graphLabel);
+
+      //     console.log(thetaMax);
+//         Normal force graph
+           context.strokeStyle = "blue";
+           context.beginPath();
+           context.moveTo(xBase2, yBase2);
+           for (i = 0; i <=100; i++) {
+             var alpha = thetaMin+i*(thetaMax-thetaMin)/100;
+             context.lineTo(xBase2+(40/xIncrement)*alpha, yBase2+40*graphY-(40/yIncrement)*Math.cos(Math.PI*alpha/180.0));
+            }
+            context.stroke();
+
+            context.beginPath();
+            context.arc(xBase2+(40/xIncrement)*theta, yBase2+40*graphY-(40/yIncrement)*Math.cos(Math.PI*theta/180.0), 3, 0, 2 * Math.PI, false);
+            context.fillStyle = 'blue';
+            context.fill();
+            context.stroke();
+
+//         mg sin theta graph
+           context.strokeStyle = "purple";
+           context.beginPath();
+           context.moveTo(xBase2, yBase2+40*graphY);
+           for (i = 0; i <=100; i++) {
+             var alpha = thetaMin+i*(thetaMax-thetaMin)/100;
+             context.lineTo(xBase2+(40/xIncrement)*alpha, yBase2+40*graphY-(40/yIncrement)*Math.sin(Math.PI*alpha/180.0));
+            }
+            context.stroke();
+
+            context.beginPath();
+            context.arc(xBase2+(40/xIncrement)*theta, yBase2+40*graphY-(40/yIncrement)*Math.sin(Math.PI*theta/180.0), 3, 0, 2 * Math.PI, false);
+            context.fillStyle = 'purple';
+            context.fill();
+            context.stroke();
+
+//         max friction graph
+           context.strokeStyle = "red";
+           context.beginPath();
+           context.moveTo(xBase2, yBase2+40*graphY-(40/yIncrement)*mu);
+           for (i = 0; i <=100; i++) {
+             var alpha = thetaMin+i*(thetaMax-thetaMin)/100;
+             context.lineTo(xBase2+(40/xIncrement)*alpha, yBase2+40*graphY-(40/yIncrement)*mu*Math.cos(Math.PI*alpha/180.0));
+            }
+            context.stroke();
+
+            context.beginPath();
+            context.arc(xBase2+(40/xIncrement)*theta, yBase2+40*graphY-(40/yIncrement)*mu*Math.cos(Math.PI*theta/180.0), 3, 0, 2 * Math.PI, false);
+            context.fillStyle = 'red';
+            context.fill();
+            context.stroke();
+
+
+ //     console.log("In the drawMotion function, with runFlag = " + runFlag + " x2 = " + x2);
+
+
+           // graph title
+           context.font = 'bold 18pt Calibri';
+           context.fillStyle = 'purple';
+           context.textAlign = 'center';
+           context.fillText(graphTitle, (canvas.width)/2, 25);
+
+
+      }
+    }
+
+    function runMotion() {
+        drawMotion();
+        if (runFlag == 1) {
+          timer = window.setTimeout(runMotion, 1000/60);
+        }
+      }
+
+    function drawArrow(Fx,Fy,Px,Py, arrowColor) {
+           var theta = Math.atan2(Fy,Fx);
+           context.strokeStyle = arrowColor;
+           context.lineWidth = 4;
+           context.beginPath();
+           context.moveTo(Px, Py);
+           context.lineTo(Px+5*Fx, Py-5*Fy);
+           context.stroke();
+
+           context.lineWidth = 2;
+
+           var Fmag = Math.sqrt(Fx*Fx+Fy*Fy);
+           if (Fmag > 5) Fmag = 5;
+
+           context.fillStyle = arrowColor;
+           context.beginPath();
+           context.moveTo(Px+5*Fx-3*Fmag*Math.cos(theta+0.25*(3.1416/2)),Py-5*Fy+3*Fmag*Math.sin(theta+0.25*(3.1416/2)));
+           context.lineTo(Px+5*Fx,Py-5*Fy);
+           context.lineTo(Px+5*Fx-3*Fmag*Math.cos(theta-0.25*(3.1416/2)),Py-5*Fy+3*Fmag*Math.sin(theta-0.25*(3.1416/2)));
+
+           context.stroke();
+           context.fill();
+
+    }
+
+    function drawAxes(xAxisStart,yAxisStart,xNum, yNum, xOffset, xIncrement, yIncrement, xNumDecimals, yNumDecimals, xAxisTitle, yAxisTitle, graphTitle) {
+        // set background color for the graph
+           context.fillStyle = "#eff";
+           context.fillRect(xAxisStart, yAxisStart, 40*xNum, 40*yNum);
+
+           var axisLabel = '';
+           var axisValue = 0;
+
+         // vertical grid lines
+         context.lineWidth = 2;
+         context.strokeStyle = '#888';
+
+         for (var i = 0; i <= xNum; i++) {
+           context.beginPath();
+           context.moveTo(xAxisStart+40*i, yAxisStart);
+           context.lineTo(xAxisStart+40*i, yAxisStart+40*yNum+10);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           axisValue = xOffset+xIncrement*(i);
+           axisLabel = axisValue.toFixed(xNumDecimals);
+           context.fillText(axisLabel, xAxisStart+40*i, yAxisStart+40*yNum+20);
+          }
+
+         // horizontal grid lines
+         for (i = 0; i <= yNum; i++) {
+           context.beginPath();
+           context.moveTo(xAxisStart-10, yAxisStart+40*i);
+           context.lineTo(xAxisStart+40*xNum, yAxisStart+40*i);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           axisValue = yIncrement*(yNum-i);
+           axisLabel = axisValue.toFixed(yNumDecimals);
+           context.fillText(axisLabel, xAxisStart-30, yAxisStart+40*i);
+
+          }
+
+         // x-axis
+           context.strokeStyle = '#000';
+           context.lineWidth = 4;
+           context.beginPath();
+           context.moveTo(xAxisStart-1, yAxisStart+40*yNum);
+           context.lineTo(xAxisStart+40*xNum+20, yAxisStart+40*yNum);
+           context.stroke();
+           context.moveTo(xAxisStart+40*xNum+10, yAxisStart+40*yNum-6);
+           context.lineTo(xAxisStart+40*xNum+20, yAxisStart+40*yNum);
+           context.lineTo(xAxisStart+40*xNum+10, yAxisStart+40*yNum+6);
+           context.lineJoin = 'miter';
+           context.stroke();
+           context.font = '16pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'left';
+           context.fillText(xAxisTitle, xAxisStart+40*xNum+24, yAxisStart+40*yNum);
+
+         // y-axis
+           context.strokeStyle = '#000';
+           context.beginPath();
+           context.moveTo(xAxisStart, yAxisStart-20);
+           context.lineTo(xAxisStart, yAxisStart+40*yNum);
+           context.stroke();
+           context.moveTo(xAxisStart-6, yAxisStart-10);
+           context.lineTo(xAxisStart, yAxisStart-20);
+           context.lineTo(xAxisStart+6, yAxisStart-10);
+           context.lineJoin = 'miter';
+           context.stroke();
+           context.strokeStyle = '#000';
+           context.textAlign = 'center';
+  //         console.log("In the drawMotion function, with yAxisTitle = " + yAxisTitle + xAxisStart );
+
+           context.font = '16pt Calibri';
+           context.fillStyle = 'black';
+           context.fillText(yAxisTitle, xAxisStart-30, yAxisStart - 35);
+
+           // graph title
+           context.font = 'bold 18pt Calibri';
+           context.fillStyle = 'purple';
+           context.textAlign = 'center';
+           context.fillText(graphTitle, xAxisStart+40*xNum/2, yAxisStart-24);
+
+    }
+
+    function drawAxesMidY(xAxisStart,yAxisStart,xNum, yNum, xOffset, xIncrement, yIncrement, xNumDecimals, yNumDecimals, xAxisTitle, yAxisTitle, graphTitle) {
+        // set background color for the graph
+           context.fillStyle = "#eff";
+           context.fillRect(xAxisStart, yAxisStart, 40*xNum, 40*yNum);
+
+           var axisLabel = '';
+           var axisValue = 0;
+
+         // vertical grid lines
+         context.lineWidth = 2;
+         context.strokeStyle = '#888';
+
+         for (var i = 0; i <= xNum; i++) {
+           context.beginPath();
+           context.moveTo(xAxisStart+40*i, yAxisStart);
+           context.lineTo(xAxisStart+40*i, yAxisStart+40*yNum/2+10);
+           context.stroke();
+           context.moveTo(xAxisStart+40*i, yAxisStart+40*yNum/2+30);
+           context.lineTo(xAxisStart+40*i, yAxisStart+40*yNum);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           axisValue = xOffset + xIncrement*(i);
+           axisLabel = axisValue.toFixed(xNumDecimals);
+           if (i > 0) context.fillText(axisLabel, xAxisStart+40*i, yAxisStart+40*yNum/2+20);
+          }
+
+         // horizontal grid lines
+         for (i = 0; i <= yNum; i++) {
+           context.beginPath();
+           context.moveTo(xAxisStart-10, yAxisStart+40*i);
+           context.lineTo(xAxisStart+40*xNum, yAxisStart+40*i);
+           context.stroke();
+           context.font = '14pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'center';
+           context.textBaseline = 'middle';
+           axisValue = yIncrement*(yNum/2-i);
+           axisLabel = axisValue.toFixed(yNumDecimals);
+           context.fillText(axisLabel, xAxisStart-30, yAxisStart+40*i);
+
+          }
+
+         // x-axis
+           context.strokeStyle = '#000';
+           context.lineWidth = 4;
+           context.beginPath();
+           context.moveTo(xAxisStart-1, yAxisStart+40*yNum/2);
+           context.lineTo(xAxisStart+40*xNum+20, yAxisStart+40*yNum/2);
+           context.stroke();
+           context.moveTo(xAxisStart+40*xNum+10, yAxisStart+40*yNum/2-6);
+           context.lineTo(xAxisStart+40*xNum+20, yAxisStart+40*yNum/2);
+           context.lineTo(xAxisStart+40*xNum+10, yAxisStart+40*yNum/2+6);
+           context.lineJoin = 'miter';
+           context.stroke();
+           context.font = '16pt Calibri';
+           context.fillStyle = 'black';
+           context.textAlign = 'left';
+           context.fillText(xAxisTitle, xAxisStart+40*xNum+24, yAxisStart+40*yNum/2);
+
+         // y-axis
+           context.strokeStyle = '#000';
+           context.beginPath();
+           context.moveTo(xAxisStart, yAxisStart-20);
+           context.lineTo(xAxisStart, yAxisStart+40*yNum);
+           context.stroke();
+           context.moveTo(xAxisStart-6, yAxisStart-10);
+           context.lineTo(xAxisStart, yAxisStart-20);
+           context.lineTo(xAxisStart+6, yAxisStart-10);
+           context.lineJoin = 'miter';
+           context.stroke();
+           context.strokeStyle = '#000';
+           context.textAlign = 'center';
+  //         console.log("In the drawMotion function, with yAxisTitle = " + yAxisTitle + xAxisStart );
+
+           context.font = '16pt Calibri';
+           context.fillStyle = 'black';
+           context.fillText(yAxisTitle, xAxisStart-30, yAxisStart - 35);
+
+           // graph title
+           context.font = 'bold 18pt Calibri';
+           context.fillStyle = 'purple';
+           context.textAlign = 'center';
+           context.fillText(graphTitle, xAxisStart+40*xNum/2, yAxisStart-24);
+
+    }
+
+    function drawSlider(sliderX, sliderY, sliderXMin, sliderXMax, sliderValueMin, sliderValueMax, sliderValue, sliderDecimals) {
+
+
+       context.strokeStyle = '#999';
+       context.lineWidth = 8;
+       context.beginPath();
+       context.moveTo(sliderXMin,sliderY);
+       context.lineTo(sliderXMax,sliderY);
+       context.stroke();
+
+       context.strokeStyle = '#44f';
+       context.lineWidth = 8;
+       context.beginPath();
+       context.moveTo(sliderXMin,sliderY);
+       context.lineTo(sliderX,sliderY);
+       context.stroke();
+
+       context.beginPath();
+       context.arc(sliderX, sliderY, 10, 0, 2 * Math.PI, false);
+       context.fillStyle = '#00f';
+       context.fill();
+       context.lineWidth = 1;
+       context.strokeStyle = 'black';
+       context.stroke();
+
+      }
+
+//  Mouse and Touch event functions from  Wolfgang Bauer
+
+function whereClicked(x_,y_,what_) {    // underscore denotes local variables
+	//if (what_ == 'down') {console.log('('+x_+','+y_+')'+what_)};
+//	console.log('('+x_+','+y_+')'+what_);
+//    console.log("x offset = " + charge1X + " y offset = " + charge1Y);
+      if ((Math.abs(x_ - (thetasliderX)) < 40) && (Math.abs(y_ - thetasliderY) < 40))   // moving the angle slider
+      {
+        thetasliderX = x_ ;
+        if (thetasliderX < thetasliderXMin) thetasliderX = thetasliderXMin;
+        if (thetasliderX > thetasliderXMax) thetasliderX = thetasliderXMax;
+        reset();
+      }
+      else if ((Math.abs(x_ - (musliderX)) < 40) && (Math.abs(y_ - musliderY) < 40))   // moving the angle slider
+      {
+        musliderX = x_ ;
+        if (musliderX < musliderXMin) musliderX = musliderXMin;
+        if (musliderX > musliderXMax) musliderX = musliderXMax;
+        reset();
+      }
+//        reset();
+//      }
+//      else if ((Math.abs(x_ - (charge2X)) < 15) && (Math.abs(y_ - charge2Y) < 15))  // moving the right-hand charge
+//      {
+//        charge2X = x_ ;
+//        charge2Y = y_ ;
+//        reset();
+//      }
+
+	if (what_ == 'down') {
+//		dragRect = true;
+//		x1 = x_;     // x1, y1 are global variables
+//		y1 = y_;
+	}
+	if (what_ == 'move') {
+//		dragRect = true;
+//		dx = x_-x1;
+//		dy = y_-y1;
+	}
+	if (what_ == 'up') {
+//		dragRect = false;
+//		dx = x_-x1;
+//		dy = y_-y1;
+	}
+}
+
+function myMove(event){
+	var xClick = event.pageX - canvasesdiv.offsetLeft;
+	var yClick = event.pageY - canvasesdiv.offsetTop;
+	whereClicked(xClick,yClick,'move');
+//	drawAll();
+//	drawMotion();
+
+}
+
+function myDown(event){
+	var xClick = event.pageX - canvasesdiv.offsetLeft;
+	var yClick = event.pageY - canvasesdiv.offsetTop;
+	whereClicked(xClick,yClick,'down');
+	canvas.onmousemove = myMove;
+//	drawMotion();
+}
+
+function myUp(event){
+	var xClick = event.pageX - canvasesdiv.offsetLeft;
+	var yClick = event.pageY - canvasesdiv.offsetTop;
+	whereClicked(xClick,yClick,'up');
+	canvas.onmousemove = null;
+//	drawMotion();
+}
+
+function myTouchMove(event){
+	event.preventDefault();
+	var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
+	var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	whereClicked(xClick,yClick,'move');
+//	drawMotion();
+}
+
+function myTouchStart(event){
+	event.preventDefault();
+	var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
+	var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	whereClicked(xClick,yClick,'down');
+//	drawMotion();
+}
+
+function myTouchEnd(event){
+	event.preventDefault();
+	var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
+	var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
+	whereClicked(xClick,yClick,'up');
+//	drawMotion();
+}
+
+  </script>
+                </div>
+                <div class="col-md-6 content_right">
+                    
+                        <h4><span>Instructions:</span></h4>
+                        <p class="para">
+                            Activity 1. In the following table, please input the height of the person, the weight of the person and the weight of the ball.
+                            The weight and length of the arm and hand are calculated based on a normally proportioned person. 
+             
+                            
+
+</p>
+                        <p class="para">When you try to find the optimal posture for lifting a load to avoid potential injury, you aim to find low values on erector spinae muscle and the joint reaction force. 
+                            (Hint: in order to achieve the goal, please control variables by keeping weight and height of the person, weight of the load fixed and changing  &#920<sub>TNH</sub>  and &#920<sub>AH</sub>  values.)
+                            </p>
+
+                    <!--    <br>Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
+                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
+                        </br>
+                        &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
+                        &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730
+                        &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>ES</sub>= 0.5*&#920<sub>TNH</sub>= <input type="text" name="THETAES" size="6" value="NA" />&#730
+                        
+-->
+                        <form id=order name=order>
+                            Weight of the person W<sub>P</sub>= <input type="text" name="W" size="6" value="0">lb.
+                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" size="6" value="0">m
+                            <br>
+                          <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
+                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
+                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920= 15&#730 
+                            <!--<input type="text" name="THETAES" size="6" value="fixed" /> 
+                            -->
+
+                            <table style="width:100%">
+                                <!--   <tr>
+            <th colspan="3">
+                Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
+                &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
+                <br>
+                &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
+                &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730
+                &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>ES</sub>= 0.5*&#920<sub>TNH</sub>= <input type="text" name="THETAES" size="6" value="NA" />&#730
+            </th>
+        </tr> -->
+
+                                <tr>
+                                    <td></td>
+                                    <td>&nbsp Force</td>
+                                    <td>&nbsp Lever arm</td>
+                                </tr>
+                               <!-- <tr>
+                                    <td>&nbsp TNH</td>
+                                    <td>&nbsp W<sub>TNH</sub>= <input type="text" name="WTNH" size="6" value="NA" />lb.</td>
+                                    <td>
+                                        &nbsp
+                                        LA<sub>TNH</sub>=<input type="text" name="LATNH" size="6" value="NA" />
+                                        m
+                                    </td>
+                                </tr>-->
+                                <tr>
+                                    <td>&nbsp AH</td>
+                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" size="6" value="NA" />lb.</td>
+                                    <td>
+                                        &nbsp
+                                        LA<sub>AH</sub>=<input type="text" name="LAWAH" size="6" value="NA" />
+                                        m
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp Ball</td>
+                                    <td>
+                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" size="6" value="0">
+                                        lb.
+                                    </td>
+                                    <td>
+                                        &nbsp
+                                        LA<sub>ball</sub>=<input type="text" name="LAWL" size="6" value="NA" />
+                                        m
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp Deltoid</td>
+                                    <td>
+                                        &nbsp
+                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />lb.
+                                    </td>
+                                    <td>
+                                        &nbsp
+                                        LA<sub>deltoid</sub>=<input type="text" name="LAES" size="6" value="NA" />
+                                        m
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" size="6" value="NA" />lb.</td>
+
+                                </tr>
+                            </table>
+                            <br />
+                            <input type="button" name="calcBtn" value="Calculate!" onclick="billme(document.order)" />
+                            <input type="reset" name="resetBtn" value="Clear Form" />
+
+                            <!--<a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a>-->
+                            <!--<br>
+                            <input type="button" name="calcBtn" value="Check out!" onclick="billme(document.order)" />
+                            <input type="reset" name="resetBtn" value="Clear Form" />
+                            <br>
+                            <br>
+                            The F<sub>AH</sub> is: <input type="text" name="subtotalBox" size="6" value="0" /><br>
+    -->
+</div>
+            </div>
+            
+            <p align=center>
+
+                
+
+            </p>
+        </div>
+    </div>
+    <div class="footer_bg">
+        <!-- start footer -->
+        <div class="container">
+            <div class="row  footer">
+                <div class="copy text-center">
+                    <p class="link"><span>&#169; All rights reserved.<a href="https://www.hartford.edu/academics/schools-colleges/arts-sciences/academics/departments-and-centers/physics/default.aspx" target="_blank" title="Dan Liu">University of Hartford</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts\base3.js"></script>
+
+</body>
+</html>
 
