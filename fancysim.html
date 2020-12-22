@@ -243,7 +243,12 @@
 	armless.src = "images/Armless.png";
 	var armonly=new Image();
 	armonly.onload = function(){
+		context.save();
+		context.translate(162,0);
+		context.rotate(theta*Math.PI/180.0)
+		context.translate(-162,0)
                context.drawImage(armonly,0, 0, 326, 200);
+		context.restore();
              }
 	armonly.src = "images/Armonly.png";	      
 
