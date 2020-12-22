@@ -235,7 +235,17 @@
         // set background color for the graph
            context.fillStyle = "#eff";
            context.fillRect(xBase2, yBase2, 40*graphX, 40*graphY);
-
+//Load the arm and torso images
+	var armless=new Image();
+	img.onload = function(){
+               ctx.drawImage(img,0, 0);
+             }
+	img.src = "images/armless.png";
+	var armonly=new Image();
+	img.onload = function(){
+               ctx.drawImage(img,0, 0);
+             }
+	img.src = "images/armonlyl.png";	      
 
 // draw the block
            context.save();
@@ -582,7 +592,7 @@
 
 function whereClicked(x_,y_,what_) {    // underscore denotes local variables
 	//if (what_ == 'down') {console.log('('+x_+','+y_+')'+what_)};
-	console.log('('+x_+','+y_+')'+what_);
+//	console.log('('+x_+','+y_+')'+what_);
 //    console.log("x offset = " + charge1X + " y offset = " + charge1Y);
       if ((Math.abs(x_ - (thetasliderX)) < 40) && (Math.abs(y_ - thetasliderY) < 40))   // moving the angle slider
       {
