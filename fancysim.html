@@ -205,10 +205,12 @@ armonly.src = "images/Armonly.png";
 var armless=new Image();
 armless.src = "images/Armless.png";
 armless.onload = function(){
+	console.log("Onload-Armless" + ballyrel);	
                context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
 
      }
 		armonly.onload = function(){
+		console.log("Onload-armonly" + ballyrel);
 		context.save();
 		context.translate(shoulderxrel*photow, shoulderyrel*photoh);  
 		context.rotate(theta*Math.PI/180.0);
