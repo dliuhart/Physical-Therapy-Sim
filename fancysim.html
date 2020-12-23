@@ -198,7 +198,7 @@
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
-	const 
+	
 var armonly=new Image()
 armonly.src = "images/Armonly.png";
 var armless=new Image();
@@ -268,7 +268,8 @@ armless.onload = function(){
 	context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	context.restore();
-	      
+//draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor)
+	drawArrow(0,8,shoulderxrel*photow, shoulderyrel*photoh, #EB7C32);
 
 // draw the block
            context.save();
