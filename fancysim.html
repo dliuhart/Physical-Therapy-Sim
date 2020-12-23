@@ -272,7 +272,9 @@ armless.onload = function(){
 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor)
 	drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
 	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
-	drawArrow(0,-8,Math.cos(theta*Math.PI/180.0)*(ballxrel*photow-shoulderxrel*photow)+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*(ballyrel*photoh-shoulderyrel*photoh)+shoulderyrel*photoh, "#EB7C32")
+	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
+	      var ballshoulderangle = theta + 180.0*Math.arctan(ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(2*Math.PI);
+	drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32");
 // draw the block
            context.save();
            context.translate(xBase, yBase);
