@@ -191,14 +191,14 @@
       var musliderValue = mu;
       var musliderDecimals = 3;
 console.log("before constant assignment" );
-	var photow = 326;
-	var photoh = 200;
-	var photoxoffset = 0;
-	var photoyoffset = 0; 
-	var shoulderxrel = 0.0798;   //x position as a fraction of photowidth #FIXME adjust anatomy
-	var shoulderyrel = 0.52; 
-	var ballxrel = 0.781;
-	var ballyrel = 0.357;
+	const photow = 326;
+	const photoh = 200;
+	const photoxoffset = 0;
+	const photoyoffset = 0; 
+	const shoulderxrel = 0.0798;   //x position as a fraction of photowidth #FIXME adjust anatomy
+	const shoulderyrel = 0.52; 
+	const ballxrel = 0.781;
+	const ballyrel = 0.357;
 console.log("after constant assignment ballyrel=" + ballyrel);	
 var armonly=new Image()
 armonly.src = "images/Armonly.png";
@@ -272,8 +272,8 @@ armless.onload = function(){
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	context.restore();
 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor)
-	drawArrow(0,8,shoulderxrel*photow, shoulderyrel*photoh, #EB7C32);  //JRFv   FIXME:add offsets  scale JRF
-	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, #EB7C32);  /JRFh  FIXME: add offsets,  scale JRF
+	drawArrow(0,8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
+	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  /JRFh  FIXME: add offsets,  scale JRF
 // draw the block
            context.save();
            context.translate(xBase, yBase);
