@@ -190,6 +190,7 @@
       var musliderValueMax = 1.0;
       var musliderValue = mu;
       var musliderDecimals = 3;
+console.log("before constant assignment" );
 	const photow = 326;
 	const photoh = 200;
 	const photoxoffset = 0;
@@ -198,7 +199,7 @@
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
-	
+console.log("after constant assignment ballyrel=" + ballyrel);	
 var armonly=new Image()
 armonly.src = "images/Armonly.png";
 var armless=new Image();
@@ -269,8 +270,8 @@ armless.onload = function(){
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	context.restore();
 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor)
-	drawArrow(0,8,shoulderxrel*photow, shoulderyrel*photoh, #EB7C32);
-
+	drawArrow(0,8,shoulderxrel*photow, shoulderyrel*photoh, #EB7C32);  //JRFv   FIXME:add offsets  scale JRF
+	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, #EB7C32);  /JRFh  FIXME: add offsets,  scale JRF
 // draw the block
            context.save();
            context.translate(xBase, yBase);
