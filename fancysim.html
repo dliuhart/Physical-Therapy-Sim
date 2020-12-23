@@ -190,20 +190,29 @@
       var musliderValueMax = 1.0;
       var musliderValue = mu;
       var musliderDecimals = 3;
+	const photow = 326;
+	const photoh = 200;
+	const photoxoffset = 0;
+	const photoyoffset = 0; 
+	const shoulderxrel = 0.0798;   //x position as a fraction of photowidth #FIXME adjust anatomy
+	const shoulderyrel = 0.52; 
+	const ballxrel = 0.781;
+	const ballyrel = 0.357;
+	const 
 var armonly=new Image()
 armonly.src = "images/Armonly.png";
 var armless=new Image();
 armless.src = "images/Armless.png";
 armless.onload = function(){
-               context.drawImage(armless,0, 0, 326, 200);
+               context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
 
      }
 		armonly.onload = function(){
 		context.save();
-		context.translate(26,104);
-		context.rotate(theta*Math.PI/180.0)
-		context.translate(-26,-104)
-               context.drawImage(armonly,0, 0, 326, 200);
+		context.translate(shoulderxrel*photow, shoulderyrel*photoh);  
+		context.rotate(theta*Math.PI/180.0);
+		context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
+               context.drawImage(armonly,photoxoffset, photoyoffset, photow, photoh);
 		context.restore();
              }
 				 
@@ -250,22 +259,16 @@ armless.onload = function(){
         // set background color for the graph
            context.fillStyle = "#eff";
            context.fillRect(xBase2, yBase2, 40*graphX, 40*graphY);
-//Load the arm and torso images
-//	var armless=new Image();
-	//armless.onload = function(){
-               context.drawImage(armless,0, 0, 326, 200);
-        //     }
-//	armless.src = "images/Armless.png";
-//	var armonly=new Image();
-//	armonly.onload = function(){
-		context.save();
-		context.translate(26,104);
-		context.rotate(theta*Math.PI/180.0)
-		context.translate(-26,-104)
-               context.drawImage(armonly,0, 0, 326, 200);
-		context.restore();
-       //      }
-//	armonly.src = "images/Armonly.png";	      
+
+	//draw the arm and torso images
+	context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
+	context.save();
+	context.translate(shoulderxrel*photow, shoulderyrel*photoh);
+	context.rotate(theta*Math.PI/180.0)
+	context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
+        context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
+	context.restore();
+	      
 
 // draw the block
            context.save();
