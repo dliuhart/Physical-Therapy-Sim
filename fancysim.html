@@ -272,7 +272,7 @@
 	drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
 	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
-	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(2*Math.PI);
+	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
 	      
 	drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32");//FIXME: magical mystery offset
 // draw the block
