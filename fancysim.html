@@ -198,23 +198,23 @@
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
-	
-var armonly=new Image()
-armonly.src = "images/Armonly.png";
-var armless=new Image();
-armless.src = "images/Armless.png";
-armless.onload = function(){	
+	var armless=new Image();
+	armless.src = "images/Armless.png";	
+	var armonly=new Image()
+	armonly.src = "images/Armonly.png";
+
+	armless.onload = function(){	
                context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
 
-     }
-		armonly.onload = function(){
+     	}
+	armonly.onload = function(){
 		context.save();
 		context.translate(shoulderxrel*photow, shoulderyrel*photoh);  
 		context.rotate(theta*Math.PI/180.0);
 		context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
                context.drawImage(armonly,photoxoffset, photoyoffset, photow, photoh);
 		context.restore();
-             }
+        }
 				 
       reset();
 
@@ -273,8 +273,8 @@ armless.onload = function(){
 	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(2*Math.PI);
-	      drawArrow(0,-8,0,0);
-	drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32");
+	      
+	drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh-10, "#EB7C32");//FIXME: magical mystery offset
 // draw the block
            context.save();
            context.translate(xBase, yBase);
