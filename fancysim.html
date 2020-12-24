@@ -190,7 +190,6 @@
       var musliderValueMax = 1.0;
       var musliderValue = mu;
       var musliderDecimals = 3;
-console.log("before constant assignment" );
 	const photow = 326;
 	const photoh = 200;
 	const photoxoffset = 0;
@@ -199,7 +198,7 @@ console.log("before constant assignment" );
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
-console.log("after constant assignment ballyrel=" + ballyrel);	
+	
 var armonly=new Image()
 armonly.src = "images/Armonly.png";
 var armless=new Image();
@@ -274,6 +273,7 @@ armless.onload = function(){
 	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(2*Math.PI);
+	      drawArrow(0,-8,0,0);
 	drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32");
 // draw the block
            context.save();
