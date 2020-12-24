@@ -282,6 +282,7 @@
 	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
 	      context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*armlen*photoh+shoulderyrel*photoh);  
 	      context.strokeStyle = "#4471C2";
+	       console.log(Math.sin(theta*Math.PI/180.0)*armlen*photoh, Math.sin(theta*Math.PI/180.0), theta*Math.PI/180.0);
 	      context.lineWidth = 2;
 	      context.stroke();
 	      context.restore();
