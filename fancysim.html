@@ -279,8 +279,8 @@
 	     //draw a line on the photo
 	      context.save();
 	      context.beginPath();
-	      context.moveto(shoulderxrel*photow, shoulderyrel*photoh);
-	      context.lineto(Math.cos(theta)*armlen*photow+shoulderxrel*photow, Math.sin(theta)*armlen*photoh+shoulderyrel*photoh);  
+	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
+	      context.lineTo(Math.cos(theta)*armlen*photow+shoulderxrel*photow, Math.sin(theta)*armlen*photoh+shoulderyrel*photoh);  
 	      context.strokeStyle("#4471C2");
 	      context.lineWidth = 2;
 	      context.stroke();
