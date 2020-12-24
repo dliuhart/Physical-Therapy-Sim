@@ -17,7 +17,7 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
     <!----font-Awesome----->
-    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+ <!--   <link rel="stylesheet" href="fonts/css/font-awesome.min.css"> -->
     <!----font-Awesome----->
     <style>
         table, th, td {
@@ -275,12 +275,12 @@
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
 		drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32"); //Wball
-	      drawArrow (0, -8, Math.cos(theta*Math.Pi/180)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.Pi/180)*0.46*armlen*photoh+shoulderyrel*photoh); //Wah
+	      drawArrow (0, -8, Math.cos(theta*Math.Pi/180.0)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.Pi/180.0)*0.46*armlen*photoh+shoulderyrel*photoh); //Wah
 	     //draw a line on the photo
 	      context.save();
 	      context.beginPath();
 	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
-	      context.lineTo(Math.cos(theta*Math.Pi/180)*armlen*photow*+shoulderxrel*photow, Math.sin(theta*Math.Pi/180)*armlen*photoh+shoulderyrel*photoh);  
+	      context.lineTo(Math.cos(theta*Math.Pi/180.0)*armlen*photow*+shoulderxrel*photow, Math.sin(theta*Math.Pi/180.0)*armlen*photoh+shoulderyrel*photoh);  
 	      context.strokeStyle = "#4471C2";
 	      context.lineWidth = 2;
 	      context.stroke();
