@@ -280,7 +280,7 @@
 	      context.save();
 	      context.beginPath();
 	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
-	      context.lineTo(Math.cos(theta*Math.Pi/180.0)*armlen*photow*+shoulderxrel*photow, Math.sin(theta*Math.Pi/180.0)*armlen*photoh+shoulderyrel*photoh);  
+	      context.lineTo(Math.cos(theta*Math.Pi/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.Pi/180.0)*armlen*photoh+shoulderyrel*photoh);  
 	      context.strokeStyle = "#4471C2";
 	      context.lineWidth = 2;
 	      context.stroke();
