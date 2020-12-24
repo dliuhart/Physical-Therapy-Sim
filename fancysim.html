@@ -198,6 +198,7 @@
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
+	const armlen = ballxrel - shoulderxrel;
 	var armless=new Image();
 	armless.src = "images/Armless.png";	
 	var armonly=new Image()
@@ -268,13 +269,22 @@
 	context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	context.restore();
-//draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor)
-	drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
-	drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
+      //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
+	      drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
+	      drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
-	      
-	drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32");//FIXME: magical mystery offset
+		drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32"); //Wball
+	      drawarrow (0, -8, Math.cos(theta)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta)*0.46*armlen*photoh+shoulderyrel*photoh); //Wah
+	     //draw a line on the photo
+	      context.save();
+	      context.beginPath();
+	      context.moveto(shoulderxrel*photow, shoulderyrel*photoh);
+	      context.lineto(Math.cos(theta)*armlen*photow+shoulderxrel*photow, Math.sin(theta)*armlen*photoh+shoulderyrel*photoh);  
+	      context.strokeStyle("#4471C2");
+	      context.lineWidth = 2;
+	      context.stroke();
+	      context.restore();
 // draw the block
            context.save();
            context.translate(xBase, yBase);
