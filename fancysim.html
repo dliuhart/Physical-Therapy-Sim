@@ -278,14 +278,17 @@
 	      drawArrow (0, -8, Math.cos(theta*Math.Pi/180.0)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.Pi/180.0)*0.46*armlen*photoh+shoulderyrel*photoh); //Wah
 	     //draw a line on the photo
 	      context.save();
-	      console.log("Saved path");
 	      context.beginPath();
-	      console.log("began path");
 	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
+	      console.log("moved to");
 	      context.lineTo(Math.cos(theta*Math.Pi/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.Pi/180.0)*armlen*photoh+shoulderyrel*photoh);  
+	      console.log("lined to");
 	      context.strokeStyle = "#4471C2";
+	      console.log("strokestyle");
 	      context.lineWidth = 2;
+	      console.log("line width");
 	      context.stroke();
+	      console.log("stroke");
 	      context.restore();
 // draw the block
            context.save();
