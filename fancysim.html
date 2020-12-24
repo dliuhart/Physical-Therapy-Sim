@@ -280,15 +280,10 @@
 	      context.save();
 	      context.beginPath();
 	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
-	      console.log("moved to");
 	      context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*armlen*photoh+shoulderyrel*photoh);  
-	      console.log("lined to");
 	      context.strokeStyle = "#4471C2";
-	      console.log("strokestyle");
 	      context.lineWidth = 2;
-	      console.log("line width");
 	      context.stroke();
-	      console.log("stroke");
 	      context.restore();
 // draw the block
            context.save();
