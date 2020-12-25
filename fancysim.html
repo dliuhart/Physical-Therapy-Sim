@@ -198,7 +198,7 @@
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
-	const shoulderdeltoidrel =169/400-shoulderxrel
+	const shoulderdeltoidrel =169/652-shoulderxrel
 	const armlen = ballxrel - shoulderxrel;
 	var armless=new Image();
 	armless.src = "images/Armless.png";	
@@ -270,7 +270,7 @@
 	context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	      console.log(context.getTransform());
-	        drawArrow(-8*Math.cos(15*Math.PI/180), 8*Math.sin(15*Math.PI/180.0), shoulderdeltoidrel*photow, photoh*shoulderyrel, "#EB7C32");   //Fdeltoid
+	        drawArrow(-8*Math.cos(15*Math.PI/180), 8*Math.sin(15*Math.PI/180.0), (shoulderxrel*shoulderdeltoidrel)*photow, photoh*shoulderyrel, "#EB7C32");   //Fdeltoid
 	context.restore();
       //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
 	      drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
