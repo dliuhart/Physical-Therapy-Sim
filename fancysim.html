@@ -195,7 +195,7 @@
 	const photoxoffset = 0;
 	const photoyoffset = 0; 
 //	const shoulderxrel = 0.0798;   //x position as a fraction of photowidth #FIXME adjust anatomy
-	const shoulderxrel = 30/651;			 
+	const shoulderxrel = 30/652;			 
 	const shoulderyrel = 0.52; 
 	const ballxrel = 0.781;
 	const ballyrel = 0.357;
@@ -262,8 +262,7 @@
         // set background color for the graph
            context.fillStyle = "#eff";
            context.fillRect(xBase2, yBase2, 40*graphX, 40*graphY);
-
-	//draw the arm and torso images
+//draw the arm and torso images
 	context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
 	context.save();
 	context.translate(shoulderxrel*photow, shoulderyrel*photoh);
@@ -271,9 +270,23 @@
 	context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	//      console.log(context.getTransform());
-	        drawArrow(-8*Math.cos(15*Math.PI/180), 8*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow, photoh*shoulderyrel, "#EB7C32");   //Fdeltoid
+	drawArrow(-8*Math.cos(15*Math.PI/180), 8*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow, photoh*shoulderyrel, "#EB7C32");   //Fdeltoid
+	     var textbase = context.textBaseline
+	      context.fillText("F", (shoulderxrel+shoulderdeltoidrel)*photow, photoh*shoulderyrel+20);
+	      context.textBaseline = "middle";
+	      contex.filltext("Deltoid", (shoulderxrel+shoulderdeltoidrel)*photow+context.measureText("F").width, photoh*shoulderyrel+20);
+	      context.textBaseline = textbase;
 	context.restore();
-      //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
+ //draw a line on the photo
+	context.save();
+	context.beginPath();
+	context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
+	context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh);  
+	context.strokeStyle = "#4471C2";
+	context.lineWidth = 2;
+	context.stroke();
+	context.restore();
+	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
 	      drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
 	      drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
@@ -281,15 +294,7 @@
 		drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32"); //Wball
 	      drawArrow (0, -8, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh); //Wah
 	    
-	      //draw a line on the photo
-	      context.save();
-	      context.beginPath();
-	      context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
-	      context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh);  
-	      context.strokeStyle = "#4471C2";
-	      context.lineWidth = 2;
-	      context.stroke();
-	      context.restore();
+	    
 // draw the block
            context.save();
            context.translate(xBase, yBase);
