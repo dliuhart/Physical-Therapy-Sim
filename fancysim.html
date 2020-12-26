@@ -201,7 +201,7 @@
 	const ballyrel = 0.357;
 	const shoulderdeltoidrel =169/652-shoulderxrel
 	const armlen = ballxrel - shoulderxrel;
-//constants for the calculation, may contradict those used for the image.  FIXME change to var, case.
+//constants for the calculation, may not be the same as those used for the image.  FIXME change to var, case.
 	var height = 1.674  //meters, equiv to 5'6'' FIXME read from input
 	var wball = 2.72155
 	var weight = 66.22 //kg, 146 lb.  FIXME read from input	
@@ -225,7 +225,7 @@
 		context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
                context.drawImage(armonly,photoxoffset, photoyoffset, photow, photoh);
 		context.restore();
-		drawMotion()
+		drawMotion();
         }
 				 
       reset();
@@ -279,7 +279,7 @@
 	var fdeltoid = (M_HAND_ARM*ARMLEN*ARM_COM*Math.cos(theta*Math.PI/180)+wball*ARMLEN*Math.cos(theta*Math.PI/180))/(DELT_INS_PT*ARMLEN*Math.sin(15*Math.PI/180));
 //console.log(fdeltoid);
 //var fdeltoid = (0.048*weight*0.389*height*0.46*Math.cos(theta*Math.PI/180)+wball*(0.389*height*Math.cos(theta*Math.PI/180)))/(0.25*0.389*height*Math.sin(15*Math.PI/180));
-console.log(fdeltoid);
+console.log("fdeltoid=" + fdeltoid);
 	drawArrow(-fdeltoid*Math.cos(15*Math.PI/180), fdeltoid*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow+photoxoffset, photoh*shoulderyrel+photoyoffset, "#EB7C32");   //Fdeltoid
 /*	     var textbase = context.textBaseline
 		context.textBaseline = "alphabetic";
@@ -299,11 +299,15 @@ console.log(fdeltoid);
 	context.stroke();
 	context.restore();
 	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
-	      drawArrow(0,-8,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv   FIXME:  scale JRF
-	      drawArrow(8,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  FIXME: ,  scale JRF 
-	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
-		var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
-		drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
+	var JRFh = fdeltoid * Math.cos((theta+15)*Math.PI/180);
+	var JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
+console.log("JRFh =" + JRFh);
+console.log("JRFv =" + JRFv);
+	drawArrow(0,-JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv   FIXME:  scale JRF
+	drawArrow(JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  FIXME: ,  scale JRF 
+	var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
+	var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
+	drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
 	      drawArrow (0, -M_HAND_ARM, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
 	    
 	    
@@ -759,7 +763,7 @@ function myTouchEnd(event){
 	whereClicked(xClick,yClick,'up');
 //	drawMotion();
 }
-
+//function formIO()
   </script>
                 </div>
                 <div class="col-md-6 content_right">
