@@ -192,7 +192,7 @@
       var musliderDecimals = 3;
 	const photow = 652*0.75;
 	const photoh = 400*0.75;
-	const photoxoffset = 0;
+	const photoxoffset = 250;
 	const photoyoffset = 0; 
 //	const shoulderxrel = 0.0798;   //x position as a fraction of photowidth #FIXME adjust anatomy
 	const shoulderxrel = 30/652;			 
@@ -201,6 +201,14 @@
 	const ballyrel = 0.357;
 	const shoulderdeltoidrel =169/652-shoulderxrel
 	const armlen = ballxrel - shoulderxrel;
+//constants for the calculation, may contradict those used for the image.  FIXME change to var, case.
+	var height = 1.674  //meters, equiv to 5'6'' FIXME read from input
+	var wball = 2.72155
+	var weight = 66.22 //kg, 146 lb.  FIXME read from input	
+	const ARMLEN = 0.389 * height	
+	const DELT_INS_PT = 0.25 
+	const ARM_COM = 0.46
+          var    M_HAND_ARM = 0.048 * weight
 	var armless=new Image();
 	armless.src = "images/Armless.png";	
 	var armonly=new Image()
@@ -217,6 +225,7 @@
 		context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
                context.drawImage(armonly,photoxoffset, photoyoffset, photow, photoh);
 		context.restore();
+		drawMotion()
         }
 				 
       reset();
@@ -242,7 +251,7 @@
        // draw theta slider
 
            drawSlider(thetasliderX, thetasliderY, thetasliderXMin, thetasliderXMax, thetasliderValueMin, thetasliderValueMax, thetasliderValue, thetasliderDecimals);
-           var sLabel = 'Angle = ';
+           var sLabel = 'Angle θ = ';
            sLabel = sLabel + thetasliderValue.toFixed(thetasliderDecimals) + ' degrees';
            context.font = '16pt Calibri';
            context.textAlign = 'center';
@@ -259,18 +268,19 @@
            context.fillStyle = 'black';
            context.fillText(sLabel,musliderXMin+0.5*(musliderXMax-musliderXMin), musliderY-25);
 
-        // set background color for the graph
-           context.fillStyle = "#eff";
-           context.fillRect(xBase2, yBase2, 40*graphX, 40*graphY);
+       
 //draw the arm and torso images
 	context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
 	context.save();
-	context.translate(shoulderxrel*photow, shoulderyrel*photoh);
+	context.translate(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
 	context.rotate(theta*Math.PI/180.0)
-	context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
+	context.translate(-1*(shoulderxrel*photow+photoxoffset), -1*(shoulderyrel*photoh+photoyoffset));
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
-	//      console.log(context.getTransform());
-	drawArrow(-8*Math.cos(15*Math.PI/180), 8*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow, photoh*shoulderyrel, "#EB7C32");   //Fdeltoid
+	var fdeltoid = (M_HAND_ARM*ARMLEN*ARM_COM*Math.cos(theta*Math.PI/180)+wball*ARMLEN*Math.cos(theta*Math.PI/180))/(DELT_INS_PT*ARMLEN*Math.sin(15*Math.PI/180));
+//console.log(fdeltoid);
+//var fdeltoid = (0.048*weight*0.389*height*0.46*Math.cos(theta*Math.PI/180)+wball*(0.389*height*Math.cos(theta*Math.PI/180)))/(0.25*0.389*height*Math.sin(15*Math.PI/180));
+console.log(fdeltoid);
+	drawArrow(-fdeltoid*Math.cos(15*Math.PI/180), fdeltoid*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow+photoxoffset, photoh*shoulderyrel+photoyoffset, "#EB7C32");   //Fdeltoid
 /*	     var textbase = context.textBaseline
 		context.textBaseline = "alphabetic";
 		context.textalign = "start"
@@ -282,22 +292,22 @@
  //draw a line on the photo
 	context.save();
 	context.beginPath();
-	context.moveTo(shoulderxrel*photow, shoulderyrel*photoh);
-	context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh);  
+	context.moveTo(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
+	context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh+photoyoffset);  
 	context.strokeStyle = "#4471C2";
 	context.lineWidth = 2;
 	context.stroke();
 	context.restore();
 	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
-	      drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "red");  //JRFv   FIXME:add offsets  scale JRF
-	      drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "red");  //JRFh  FIXME: add offsets,  scale JRF 
+	      drawArrow(0,-8,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv   FIXME:  scale JRF
+	      drawArrow(8,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  FIXME: ,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
-	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
-		drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "green"); //Wball
-	      drawArrow (0, -8, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh, "blue"); //Wah
+		var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
+		drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
+	      drawArrow (0, -M_HAND_ARM, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
 	    
 	    
-// draw the block
+/*// draw the block
            context.save();
            context.translate(xBase, yBase);
            context.rotate(theta*Math.PI/180.0);
@@ -328,7 +338,7 @@
            else {
              drawArrow(-16*mu*Math.cos(angle)*Math.cos(angle),16*mu*Math.cos(angle)*Math.sin(angle),xBase,yBase, "red");  // friction instead
            }
-
+*/
 // here's the ball code
 //           context.arc(xBase+2*x1, yBase+80-2*H1-radius-2+2*y1, radius, 0, 2 * Math.PI, false);
 //           context.fillStyle = '#00f';
@@ -780,7 +790,7 @@ function myTouchEnd(event){
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
-                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920= 15&#730 
+                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>D</sub>= 15&#730 
                             <!--<input type="text" name="THETAES" size="6" value="fixed" /> 
                             -->
 
