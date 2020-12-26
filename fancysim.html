@@ -271,11 +271,13 @@
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
 	//      console.log(context.getTransform());
 	drawArrow(-8*Math.cos(15*Math.PI/180), 8*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow, photoh*shoulderyrel, "#EB7C32");   //Fdeltoid
-	     var textbase = context.textBaseline
+/*	     var textbase = context.textBaseline
+		context.textBaseline = "alphabetic";
+		context.textalign = "start"
 	      context.fillText("F", (shoulderxrel+shoulderdeltoidrel)*photow, photoh*shoulderyrel+20);
 	      context.textBaseline = "middle";
 	      context.fillText("Deltoid", (shoulderxrel+shoulderdeltoidrel)*photow+context.measureText("F").width, photoh*shoulderyrel+20);
-	      context.textBaseline = textbase;
+	      context.textBaseline = textbase; */
 	context.restore();
  //draw a line on the photo
 	context.save();
@@ -287,12 +289,12 @@
 	context.stroke();
 	context.restore();
 	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
-	      drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFv   FIXME:add offsets  scale JRF
-	      drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "#EB7C32");  //JRFh  FIXME: add offsets,  scale JRF 
+	      drawArrow(0,-8,shoulderxrel*photow, shoulderyrel*photoh, "red");  //JRFv   FIXME:add offsets  scale JRF
+	      drawArrow(8,0,shoulderxrel*photow, shoulderyrel*photoh, "red");  //JRFh  FIXME: add offsets,  scale JRF 
 	      var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	      var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
-		drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "#EB7C32"); //Wball
-	      drawArrow (0, -8, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh); //Wah
+		drawArrow(0,-8,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh, "green"); //Wball
+	      drawArrow (0, -8, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh, "blue"); //Wah
 	    
 	    
 // draw the block
