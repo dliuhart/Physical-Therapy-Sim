@@ -205,10 +205,13 @@
 	var height = 1.674  //meters, equiv to 5'6'' FIXME read from input
 	var wball = 2.72155
 	var weight = 66.22 //kg, 146 lb.  FIXME read from input	
-	const ARMLEN = 0.389 * height	
+	var ARMLEN = 0.389 * height	
 	const DELT_INS_PT = 0.25 
 	const ARM_COM = 0.46
-          var    M_HAND_ARM = 0.048 * weight
+        var    M_HAND_ARM = 0.048 * weight
+	var fdeltoid;
+	var JRFh;
+	var JRFv;
 	var armless=new Image();
 	armless.src = "images/Armless.png";	
 	var armonly=new Image()
@@ -276,7 +279,7 @@
 	context.rotate(theta*Math.PI/180.0)
 	context.translate(-1*(shoulderxrel*photow+photoxoffset), -1*(shoulderyrel*photoh+photoyoffset));
         context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
-	var fdeltoid = (M_HAND_ARM*ARMLEN*ARM_COM*Math.cos(theta*Math.PI/180)+wball*ARMLEN*Math.cos(theta*Math.PI/180))/(DELT_INS_PT*ARMLEN*Math.sin(15*Math.PI/180));
+	fdeltoid = (M_HAND_ARM*ARMLEN*ARM_COM*Math.cos(theta*Math.PI/180)+wball*ARMLEN*Math.cos(theta*Math.PI/180))/(DELT_INS_PT*ARMLEN*Math.sin(15*Math.PI/180));
 //console.log(fdeltoid);
 //var fdeltoid = (0.048*weight*0.389*height*0.46*Math.cos(theta*Math.PI/180)+wball*(0.389*height*Math.cos(theta*Math.PI/180)))/(0.25*0.389*height*Math.sin(15*Math.PI/180));
 console.log("fdeltoid=" + fdeltoid);
@@ -289,6 +292,7 @@ console.log("fdeltoid=" + fdeltoid);
 	      context.fillText("Deltoid", (shoulderxrel+shoulderdeltoidrel)*photow+context.measureText("F").width, photoh*shoulderyrel+20);
 	      context.textBaseline = textbase; */
 	context.restore();
+
  //draw a line on the photo
 	context.save();
 	context.beginPath();
@@ -298,13 +302,14 @@ console.log("fdeltoid=" + fdeltoid);
 	context.lineWidth = 2;
 	context.stroke();
 	context.restore();
+
 	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
-	var JRFh = fdeltoid * Math.cos((theta+15)*Math.PI/180);
-	var JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
+	 JRFh = fdeltoid * Math.cos((theta+15)*Math.PI/180);
+	 JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
 console.log("JRFh =" + JRFh);
 console.log("JRFv =" + JRFv);
-	drawArrow(0,-JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv   FIXME:  scale JRF
-	drawArrow(JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  FIXME: ,  scale JRF 
+	drawArrow(0,-JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv  
+	drawArrow(JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
 	var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
 	drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
@@ -763,7 +768,7 @@ function myTouchEnd(event){
 	whereClicked(xClick,yClick,'up');
 //	drawMotion();
 }
-//function formIO()
+
   </script>
                 </div>
                 <div class="col-md-6 content_right">
@@ -789,8 +794,8 @@ function myTouchEnd(event){
                         
 -->
                         <form id=order name=order>
-                            Weight of the person W<sub>P</sub>= <input type="text" name="W" size="6" value="0">lb.
-                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" size="6" value="0">m
+                            Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="0">lb.
+                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="0">m
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
@@ -836,7 +841,7 @@ function myTouchEnd(event){
                                 <tr>
                                     <td>&nbsp Ball</td>
                                     <td>
-                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" size="6" value="0">
+                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="0">
                                         lb.
                                     </td>
                                     <td>
@@ -849,7 +854,7 @@ function myTouchEnd(event){
                                     <td>&nbsp Deltoid</td>
                                     <td>
                                         &nbsp
-                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />lb.
+                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" id="fdelt" size="6" value="NA" />lb.
                                     </td>
                                     <td>
                                         &nbsp
@@ -858,13 +863,23 @@ function myTouchEnd(event){
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" size="6" value="NA" />lb.</td>
+                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" id="JRF" size="6" value="NA" />lb.</td>
 
                                 </tr>
                             </table>
                             <br />
-                            <input type="button" name="calcBtn" value="Calculate!" onclick="billme(document.order)" />
+                            <input type="button" name="calcBtn" id="calcBtn" value="Calculate!" onclick="billme(document.order)" />
                             <input type="reset" name="resetBtn" value="Clear Form" />
+<script> 
+document.getElementById('calcBtn').addEventListener('click', formIO);  //this needs to be below the form in the HTML
+function formIO(){
+	 weight = parseFloat(document.getElementById('W').value);
+	 height = parseFloat(document.getElementById('H').value);
+	 wball = parseFloat(document.getElementById('WL').value);
+	document.getElementById('fdelt').value = fdeltoid;
+	document.getElementById('JRF').value = Math.sqrt(JRFv**2+JRFh**2);
+}
+</script>
 
                             <!--<a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a>-->
                             <!--<br>
