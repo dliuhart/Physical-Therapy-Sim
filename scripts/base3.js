@@ -24,7 +24,7 @@ function billme()
 
         //These lines make sure that variables 1, 2, and 3 are numbers.
 			order.WAH.value= W*0.048
-            order.subtotalBox.value= (W*0.048*LAWAH+WL*LAWL)/LAES
+            order.subtotalBox.value= (W*0.048*LAWAH+WL*LAWL)/LAES //Fdeltoid
 
             var JRFH=order.subtotalBox.value*Math.cos(es);
             var JRFV=order.subtotalBox.value*Math.sin(es)-W*0.048-WL;

@@ -92,13 +92,13 @@
                 
                 <div class="col-md-6 content_right">
           
-                        <a href="images/arm.jpg" download>
-                            <img src="images/arm.jpg" alt="" class="img-responsive" width="80%" height="80%" align="middle">
+                        <!-- <a href="images/arm.jpg" download>
+                            <img src="images/arm.jpg" alt="" class="img-responsive" width="80%" height="80%" align="middle"> -->
                         </a>
 			<br><br><br><br><br><br><br><br><br><br>
 	<div id="canvasesdiv" style="position:relative; display:block; margin:auto; width:820px; height:370px"></div>
     <canvas id="myCanvas" style="display: block; position: absolute; margin: 0 auto;display: block;
-        position: absolute; margin: 0 auto; top: 400px; bottom: 0; left: 0; right: 0;" width="820" height="370"></canvas>
+        position: absolute; margin: 0 auto; top: 0px; bottom: 0; left: 0; right: 0;" width="820" height="370"></canvas>
                          <script>
 
 // Simulation first posted on 10-4-2017, written by Andrew Duffy
@@ -110,10 +110,10 @@
         index = -1;
         time = 0.0;
         thetasliderValue = thetasliderValueMin + (thetasliderValueMax-thetasliderValueMin)*(thetasliderX-thetasliderXMin)/(thetasliderXMax-thetasliderXMin);
-        theta = thetasliderValue;
+        theta = Number.parseFloat(thetasliderValue.toFixed(thetasliderDecimals));
         if (thetaMax < theta) thetaMax = theta;
-        musliderValue = musliderValueMin + (musliderValueMax-musliderValueMin)*(musliderX-musliderXMin)/(musliderXMax-musliderXMin);
-        mu = musliderValue;
+        wballsliderValue = wballsliderValueMin + (wballsliderValueMax-wballsliderValueMin)*(wballsliderX-wballsliderXMin)/(wballsliderXMax-wballsliderXMin);
+        wball = Number.parseFloat(wballsliderValue.toFixed(wballsliderDecimals));
 
         runFlag = 1;
         drawMotion();
@@ -169,27 +169,30 @@
       var timer;
       var runFlag = 1;
       var theta = 0.0;
-      var thetaMin = 0.0;
-      var thetaMax = 0.0;
+      var thetaMin = -90.0;
+      var thetaMax = 90.0;
       var mu = 0.5;
 
-      var thetasliderX = 420;
+      var thetasliderX = 510;
+
       var thetasliderY = 340;
       var thetasliderXMin = 420;
-      var thetasliderXMax = 600;
-      var thetasliderValueMin = 0.0;
+      var thetasliderXMax = 601;
+      var thetasliderValueMin = -90.0;
       var thetasliderValueMax = 90.0;
       var thetasliderValue = theta;
-      var thetasliderDecimals = 1;
+      var thetasliderDecimals = 0; //Now theta is rounded to this number of decimals in reset().
 
-      var musliderX = 210;
-      var musliderY = 340;
-      var musliderXMin = 110;
-      var musliderXMax = 310;
-      var musliderValueMin = 0.0;
-      var musliderValueMax = 1.0;
-      var musliderValue = mu;
-      var musliderDecimals = 3;
+
+      var wballsliderX = 230; //this actually sets the initial value of the slider. What does wballsliderValue do?
+      var wballsliderY = 340;
+      var wballsliderXMin = 110;
+      var wballsliderXMax = 310;
+      var wballsliderValueMin = 0.0;
+      var wballsliderValueMax = 10.0;
+      var wballsliderValue = wball;
+      var wballsliderDecimals = 1;
+	const fScale = 0.2 //Scaling factor for Fdeltoid, JRFv, JRFh
 	const photow = 652*0.75;
 	const photoh = 400*0.75;
 	const photoxoffset = 250;
@@ -203,8 +206,8 @@
 	const armlen = ballxrel - shoulderxrel;
 //constants for the calculation, may not be the same as those used for the image.  FIXME change to var, case.
 	var height = 1.674  //meters, equiv to 5'6''   Will be overwritten with form input after user hits button.
-	var wball = 2.72155  // Will be overwritten with form input after user hits button.
-	var weight = 66.22 //kg, 146 lb.   Will be overwritten with form input after user hits button.
+	var wball = 2.7  // Will be overwritten with form input after user hits button. rounded to wballsliderdecimals in reset(). inital value really set by wballsliderX initiallization.
+	var weight = 146  // lb , 66.22 kg, .   Will be overwritten with form input after user hits button.
 	var ARMLEN = 0.389 * height	
 	const DELT_INS_PT = 0.25 
 	const ARM_COM = 0.46
@@ -219,6 +222,7 @@
 
 	armless.onload = function(){	
                context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
+		drawMotion();
 
      	}
 	armonly.onload = function(){
@@ -262,14 +266,14 @@
            context.fillStyle = 'black';
            context.fillText(sLabel,thetasliderXMin+0.5*(thetasliderXMax-thetasliderXMin), thetasliderY-25);
 
-           drawSlider(musliderX, musliderY, musliderXMin, musliderXMax, musliderValueMin, musliderValueMax, musliderValue, musliderDecimals);
-           var sLabel = 'mu = ';
-           sLabel = sLabel + musliderValue.toFixed(musliderDecimals) + ' ';
+           drawSlider(wballsliderX, wballsliderY, wballsliderXMin, wballsliderXMax, wballsliderValueMin, wballsliderValueMax, wballsliderValue, wballsliderDecimals);
+           var sLabel = 'weight of Ball = ';
+           sLabel = sLabel + wballsliderValue.toFixed(wballsliderDecimals) + ' lb ';
            context.font = '16pt Calibri';
            context.textAlign = 'center';
            context.textBaseline = 'middle';
            context.fillStyle = 'black';
-           context.fillText(sLabel,musliderXMin+0.5*(musliderXMax-musliderXMin), musliderY-25);
+           context.fillText(sLabel,wballsliderXMin+0.5*(wballsliderXMax-wballsliderXMin), wballsliderY-25);
 
        
 //draw the arm and torso images
@@ -283,7 +287,7 @@
 //console.log(fdeltoid);
 //var fdeltoid = (0.048*weight*0.389*height*0.46*Math.cos(theta*Math.PI/180)+wball*(0.389*height*Math.cos(theta*Math.PI/180)))/(0.25*0.389*height*Math.sin(15*Math.PI/180));
 console.log("fdeltoid=" + fdeltoid);
-	drawArrow(-fdeltoid*Math.cos(15*Math.PI/180), fdeltoid*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow+photoxoffset, photoh*shoulderyrel+photoyoffset, "#EB7C32");   //Fdeltoid
+	drawArrow(-fScale*fdeltoid*Math.cos(15*Math.PI/180), fScale*fdeltoid*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow+photoxoffset, photoh*shoulderyrel+photoyoffset, "#EB7C32");   //Fdeltoid
 /*	     var textbase = context.textBaseline
 		context.textBaseline = "alphabetic";
 		context.textalign = "start"
@@ -308,8 +312,8 @@ console.log("fdeltoid=" + fdeltoid);
 	 JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
 console.log("JRFh =" + JRFh);
 console.log("JRFv =" + JRFv);
-	drawArrow(0,-JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv  
-	drawArrow(JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
+	drawArrow(0,-fScale*JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv  
+	drawArrow(fScale*JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
 	var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 	var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
 	drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
@@ -632,7 +636,7 @@ console.log("JRFv =" + JRFv);
 
     function drawSlider(sliderX, sliderY, sliderXMin, sliderXMax, sliderValueMin, sliderValueMax, sliderValue, sliderDecimals) {
 
-
+//sliderValueMin, sliderValueMax, sliderValue, sliderDecimals are all unused in this function, but used elsewhere.
        context.strokeStyle = '#999';
        context.lineWidth = 8;
        context.beginPath();
@@ -670,11 +674,11 @@ function whereClicked(x_,y_,what_) {    // underscore denotes local variables
         if (thetasliderX > thetasliderXMax) thetasliderX = thetasliderXMax;
         reset();
       }
-      else if ((Math.abs(x_ - (musliderX)) < 40) && (Math.abs(y_ - musliderY) < 40))   // moving the angle slider
+      else if ((Math.abs(x_ - (wballsliderX)) < 40) && (Math.abs(y_ - wballsliderY) < 40))   // moving the weight slider
       {
-        musliderX = x_ ;
-        if (musliderX < musliderXMin) musliderX = musliderXMin;
-        if (musliderX > musliderXMax) musliderX = musliderXMax;
+        wballsliderX = x_ ;
+        if (wballsliderX < wballsliderXMin) wballsliderX = wballsliderXMin;
+        if (wballsliderX > wballsliderXMax) wballsliderX = wballsliderXMax;
         reset();
       }
 //        reset();
@@ -794,8 +798,8 @@ function myTouchEnd(event){
                         
 -->
                         <form id=order name=order>
-                            Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="0">lb.
-                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="0">m
+                            Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="146">lb.
+                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="1.674">m
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
@@ -831,22 +835,22 @@ function myTouchEnd(event){
                                 </tr>-->
                                 <tr>
                                     <td>&nbsp AH</td>
-                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" size="6" value="NA" />lb.</td>
+                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" id="WAH" size="6" value="NA" />lb.</td>
                                     <td>
                                         &nbsp
-                                        LA<sub>AH</sub>=<input type="text" name="LAWAH" size="6" value="NA" />
+                                        LA<sub>AH</sub>=<input type="text" name="LAWAH" id="LAWAH" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp Ball</td>
                                     <td>
-                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="0">
+                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="6">
                                         lb.
                                     </td>
                                     <td>
                                         &nbsp
-                                        LA<sub>ball</sub>=<input type="text" name="LAWL" size="6" value="NA" />
+                                        LA<sub>ball</sub>=<input type="text" name="LAWL" id="LAWL" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
@@ -858,7 +862,7 @@ function myTouchEnd(event){
                                     </td>
                                     <td>
                                         &nbsp
-                                        LA<sub>deltoid</sub>=<input type="text" name="LAES" size="6" value="NA" />
+                                        LA<sub>deltoid</sub>=<input type="text" name="LAES" id="LAES" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
@@ -868,16 +872,21 @@ function myTouchEnd(event){
                                 </tr>
                             </table>
                             <br />
-                            <input type="button" name="calcBtn" id="calcBtn" value="Calculate!" onclick="billme(document.order)" />
+                            <input type="button" name="calcBtn" id="calcBtn" value="Calculate!" />
                             <input type="reset" name="resetBtn" value="Clear Form" />
 <script> 
 document.getElementById('calcBtn').addEventListener('click', formIO);  //this needs to be below the form in the HTML
 function formIO(){
 	 weight = parseFloat(document.getElementById('W').value);
 	 height = parseFloat(document.getElementById('H').value);
-	 wball = parseFloat(document.getElementById('WL').value);
+//	 wball = parseFloat(document.getElementById('WL').value);
+	document.getElementById('WL').value = wball
 	document.getElementById('fdelt').value = fdeltoid;
 	document.getElementById('JRF').value = Math.sqrt(JRFv**2+JRFh**2);
+	document.getElementById('WAH').value = M_HAND_ARM;
+	document.getElementById('LAWAH').value = ARMLEN * ARM_COM * Math.cos(theta*Math.PI/180);
+	document.getElementById('LAWL').value = ARMLEN * Math.cos(theta*Math.PI/180);
+	document.getElementById('LAES').value = ARMLEN * DELT_INS_PT* Math.sin(15*Math.PI/180);
 }
 </script>
 
@@ -909,7 +918,7 @@ function formIO(){
             </div>
         </div>
     </div>
-    <script src="scripts\base3.js"></script>
+ <!--   <script src="scripts\base3.js"></script> -->
 
 </body>
 </html>
