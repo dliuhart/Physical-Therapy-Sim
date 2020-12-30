@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Simulation of a Shoulder I</title>
+    <title>Simulation of a Shoulder IV</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -58,8 +58,8 @@
                             <!--<li><a href="index.html">Home</a></li>-->
                             <li ><a href="index.html">Simulation I</a></li>
                             <li ><a href="sim2.html">Simulation II</a></li>
-                            <li class="active"><a href="sim3.html">Simulation III</a></li> <!--
-    <li><a href="contact.html">Contact</a></li>-->
+                            <li ><a href="sim3.html">Simulation III</a></li> 
+    			    <li class="active"><a href="fancysim.html">Simulation IV</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                     <!-- start soc_icons -->
@@ -96,9 +96,10 @@
                             <img src="images/arm.jpg" alt="" class="img-responsive" width="80%" height="80%" align="middle"> -->
                         </a>
 			<br>
-	<div id="canvasesdiv" style="position:relative; display:block; margin:auto; width:820px; height:370px"></div>
+
+	<div id="canvasesdiv" style="position:relative; display:block; margin:auto; width:820px; height:820px"></div>
     <canvas id="myCanvas" style="display: block; position: absolute; margin: 0 auto;display: block;
-        position: absolute; margin: 0 auto; top: 0px; bottom: 0; left: 0; right: 0;" width="820" height="370"></canvas>
+        position: absolute; margin: 0 auto; top: 0px; bottom: 0; left: 0; right: 0;" width="820" height="820"></canvas>
                          <script>
 
 // Simulation first posted on 10-4-2017, written by Andrew Duffy
@@ -173,30 +174,32 @@
       var thetaMax = 90.0;
       var mu = 0.5;
 
-      var thetasliderX = 510;
+	const fScale = 0.2 //Scaling factor for Fdeltoid, JRFv, JRFh
+	const photow = 652*0.75;
+	const photoh = 400*0.75;
+	const photoxoffset = 75;
+	const photoyoffset = 250; 
 
-      var thetasliderY = 340;
-      var thetasliderXMin = 420;
-      var thetasliderXMax = 601;
+      var thetasliderX = 680; //was 510
+      var thetasliderY = photoyoffset + 70;  //was 340+photoyoffset
+      var thetasliderXMin = photoyoffset+photow-150; // seems to be a ~150 pixel offset somewhere in the slider code
+      var thetasliderXMax = thetasliderXMin + 181;
       var thetasliderValueMin = -90.0;
       var thetasliderValueMax = 90.0;
       var thetasliderValue = theta;
       var thetasliderDecimals = 0; //Now theta is rounded to this number of decimals in reset().
 
 
-      var wballsliderX = 230; //this actually sets the initial value of the slider. What does wballsliderValue do?
-      var wballsliderY = 340;
-      var wballsliderXMin = 110;
-      var wballsliderXMax = 310;
+      var wballsliderX = 720; //this actually sets the initial value of the slider. wballsliderValue seems to be a temp value
+      var wballsliderY = 270 +photoyoffset;
+      var wballsliderXMin = photoyoffset+photow - 150;
+      var wballsliderXMax = wballsliderXMin + 220;
       var wballsliderValueMin = 0.0;
       var wballsliderValueMax = 10.0;
       var wballsliderValue = wball;
       var wballsliderDecimals = 1;
-	const fScale = 0.2 //Scaling factor for Fdeltoid, JRFv, JRFh
-	const photow = 652*0.75;
-	const photoh = 400*0.75;
-	const photoxoffset = 250;
-	const photoyoffset = 0; 
+
+//	const photoyoffset = 100; 
 //	const shoulderxrel = 0.0798;   //x position as a fraction of photowidth #FIXME adjust anatomy
 	const shoulderxrel = 30/652;			 
 	const shoulderyrel = 0.52; 
@@ -267,7 +270,7 @@
            context.fillText(sLabel,thetasliderXMin+0.5*(thetasliderXMax-thetasliderXMin), thetasliderY-25);
 
            drawSlider(wballsliderX, wballsliderY, wballsliderXMin, wballsliderXMax, wballsliderValueMin, wballsliderValueMax, wballsliderValue, wballsliderDecimals);
-           var sLabel = 'weight of Ball = ';
+           var sLabel = 'Weight of ball = ';
            sLabel = sLabel + wballsliderValue.toFixed(wballsliderDecimals) + ' lb ';
            context.font = '16pt Calibri';
            context.textAlign = 'center';
@@ -712,7 +715,7 @@ function myMove(event){
 	var BB=canvas.getBoundingClientRect();
 	var xClick = event.clientX - BB.left;
 	var yClick = event.clientY - BB.top;
-	whereClicked(xClick,yClick,'move');
+	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'move');
 //	drawAll();
 //	drawMotion();
 
@@ -726,7 +729,7 @@ function myDown(event){
 	var xClick = event.clientX - BB.left;
 	//var yClick = event.pageY - canvasesdiv.offsetTop;
 	var yClick = event.clientY - BB.top;
-	whereClicked(xClick,yClick,'down');
+	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'down');
 	canvas.onmousemove = myMove;
 //	drawMotion();
 }
@@ -736,7 +739,7 @@ function myUp(event){
 	var BB=canvas.getBoundingClientRect();
 	var xClick = event.clientX - BB.left;
 	var yClick = event.clientY - BB.top;
-	whereClicked(xClick,yClick,'up');
+	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'up');
 	canvas.onmousemove = null;
 //	drawMotion();
 }
@@ -749,7 +752,7 @@ function myTouchMove(event){
 	var xClick = event.targetTouches[0].pageX - BB.left;
 	//var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
 	var yClick = event.targetTouches[0].pageY - BB.top;
-	whereClicked(xClick,yClick,'move');
+	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'move');
 //	drawMotion();
 }
 
@@ -759,7 +762,7 @@ function myTouchStart(event){
 	var BB=canvas.getBoundingClientRect();
 	var xClick = event.targetTouches[0].pageX - BB.left;
 	var yClick = event.targetTouches[0].pageY - BB.top;
-	whereClicked(xClick,yClick,'down');
+	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'down');
 //	drawMotion();
 }
 
@@ -769,7 +772,7 @@ function myTouchEnd(event){
 	var BB=canvas.getBoundingClientRect();
 	var xClick = event.targetTouches[0].pageX - BB.left;
 	var yClick = event.targetTouches[0].pageY - BB.top;
-	whereClicked(xClick,yClick,'up');
+	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'up');
 //	drawMotion();
 }
 
