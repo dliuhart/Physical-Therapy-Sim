@@ -4,7 +4,6 @@
     <title>Simulation of a Shoulder IV</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!--    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--[if lt IE 9]>
@@ -14,7 +13,6 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- start plugins -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script> 
 
     <style>
@@ -51,7 +49,7 @@
                             <li ><a href="index.html">Simulation I</a></li>
                             <li ><a href="sim2.html">Simulation II</a></li>
                             <li ><a href="sim3.html">Simulation III</a></li> 
-    			    <li class="active"><a href="fancysim.html">Simulation IV</a></li>
+    			    <li class="active"><a href="sim4.html">Simulation IV</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                     <!-- start soc_icons -->
@@ -125,11 +123,11 @@
       var thetaMax = 90.0;
       var mu = 0.5;
 
-	const fScale = 0.2 //Scaling factor for Fdeltoid, JRFv, JRFh
-	const photow = 652*0.75;
-	const photoh = 400*0.75;
-	const photoxoffset = 75;
-	const photoyoffset = 250; 
+		const fScale = 0.2 //Scaling factor for Fdeltoid, JRFv, JRFh
+		const photow = 652*0.75;
+		const photoh = 400*0.75;
+		const photoxoffset = 75;
+		const photoyoffset = 250; 
 
       var thetasliderX = 680; //was 510
       var thetasliderY = photoyoffset + 70;  //was 340+photoyoffset
@@ -150,39 +148,38 @@
       var wballsliderValue = wball;
       var wballsliderDecimals = 1;
 
-	const shoulderxrel = 30/652;			 
-	const shoulderyrel = 0.52; 
-	const ballxrel = 0.781;
-	const ballyrel = 0.357;
-	const shoulderdeltoidrel =169/652-shoulderxrel
-	const armlen = ballxrel - shoulderxrel;
+		const shoulderxrel = 30/652;			 
+		const shoulderyrel = 0.52; 
+		const ballxrel = 0.781;
+		const ballyrel = 0.357;
+		const shoulderdeltoidrel =169/652-shoulderxrel
+		const armlen = ballxrel - shoulderxrel;
 //constants for the calculation, may not be the same as those used for the image.  FIXME change to var, case.
-	var height = 1.674  //meters, equiv to 5'6''   Will be overwritten with form input after user hits button.
-	var wball = 2.7  // Will be overwritten with form input after user hits button. rounded to wballsliderdecimals in reset(). inital value really set by wballsliderX initiallization.
-	var weight = 146  // lb , 66.22 kg, .   Will be overwritten with form input after user hits button.
-	var ARMLEN = 0.389 * height	
-	const DELT_INS_PT = 0.25 
-	const ARM_COM = 0.46
-        var    M_HAND_ARM = 0.048 * weight
-	var fdeltoid;
-	var JRFh;
-	var JRFv;
-	var armless=new Image();
-	armless.src = "images/Armless.png";	
-	var armonly=new Image()
-	armonly.src = "images/Armonly.png";
+		var height = 1.674  //meters, equiv to 5'6''   Will be overwritten with form input after user hits button.
+		var wball = 2.7  // Will be overwritten with form input after user hits button. rounded to wballsliderdecimals in reset(). inital value really set by wballsliderX initiallization.
+		var weight = 146  // lb , 66.22 kg, .   Will be overwritten with form input after user hits button.
+		var ARMLEN = 0.389 * height	
+		const DELT_INS_PT = 0.25 
+		const ARM_COM = 0.46
+      var    M_HAND_ARM = 0.048 * weight
+		var fdeltoid;
+		var JRFh;
+		var JRFv;
+		var armless=new Image();
+		armless.src = "images/Armless.png";	
+		var armonly=new Image()
+		armonly.src = "images/Armonly.png";
 
-	armless.onload = function(){	
-               context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
-		drawMotion();
-
+		armless.onload = function(){	
+         context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
+			drawMotion();
      	}
 	armonly.onload = function(){
 		context.save();
 		context.translate(shoulderxrel*photow, shoulderyrel*photoh);  
 		context.rotate(theta*Math.PI/180.0);
 		context.translate(-1*shoulderxrel*photow, -1*shoulderyrel*photoh);
-               context.drawImage(armonly,photoxoffset, photoyoffset, photow, photoh);
+      context.drawImage(armonly,photoxoffset, photoyoffset, photow, photoh);
 		context.restore();
 		drawMotion();
         }
@@ -225,16 +222,16 @@
 
        
 //draw the arm and torso images
-	context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
-	context.save();
-	context.translate(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
-	context.rotate(theta*Math.PI/180.0)
-	context.translate(-1*(shoulderxrel*photow+photoxoffset), -1*(shoulderyrel*photoh+photoyoffset));
-        context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
-	fdeltoid = (M_HAND_ARM*ARMLEN*ARM_COM*Math.cos(theta*Math.PI/180)+wball*ARMLEN*Math.cos(theta*Math.PI/180))/(DELT_INS_PT*ARMLEN*Math.sin(15*Math.PI/180));
+				context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
+				context.save();
+				context.translate(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
+				context.rotate(theta*Math.PI/180.0)
+				context.translate(-1*(shoulderxrel*photow+photoxoffset), -1*(shoulderyrel*photoh+photoyoffset));
+  			 	context.drawImage(armonly, photoxoffset, photoyoffset, photow, photoh);
+				fdeltoid = (M_HAND_ARM*ARMLEN*ARM_COM*Math.cos(theta*Math.PI/180)+wball*ARMLEN*Math.cos(theta*Math.PI/180))/(DELT_INS_PT*ARMLEN*Math.sin(15*Math.PI/180));
 //console.log(fdeltoid);
 //console.log("fdeltoid=" + fdeltoid);
-	drawArrow(-fScale*fdeltoid*Math.cos(15*Math.PI/180), fScale*fdeltoid*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow+photoxoffset, photoh*shoulderyrel+photoyoffset, "#EB7C32");   //Fdeltoid
+				drawArrow(-fScale*fdeltoid*Math.cos(15*Math.PI/180), fScale*fdeltoid*Math.sin(15*Math.PI/180.0), (shoulderxrel+shoulderdeltoidrel)*photow+photoxoffset, photoh*shoulderyrel+photoyoffset, "#EB7C32");   //Fdeltoid
 /*	     var textbase = context.textBaseline
 		context.textBaseline = "alphabetic";
 		context.textalign = "start"
@@ -242,30 +239,30 @@
 	      context.textBaseline = "middle";
 	      context.fillText("Deltoid", (shoulderxrel+shoulderdeltoidrel)*photow+context.measureText("F").width, photoh*shoulderyrel+20);
 	      context.textBaseline = textbase; */
-	context.restore();
+				context.restore();
 
  //draw a line on the photo
-	context.save();
-	context.beginPath();
-	context.moveTo(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
-	context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh+photoyoffset);  
-	context.strokeStyle = "#4471C2";
-	context.lineWidth = 2;
-	context.stroke();
-	context.restore();
+				context.save();
+				context.beginPath();
+				context.moveTo(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
+				context.lineTo(Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh+photoyoffset);  
+				context.strokeStyle = "#4471C2";
+				context.lineWidth = 2;
+				context.stroke();
+				context.restore();
 
 	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
-	 JRFh = fdeltoid * Math.cos((theta+15)*Math.PI/180);
-	 JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
+	 			JRFh = fdeltoid * Math.cos((theta+15)*Math.PI/180);
+	 			JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
 //console.log("JRFh =" + JRFh);
 //console.log("JRFv =" + JRFv);
-	drawArrow(0,-fScale*JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv  
-	drawArrow(fScale*JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
-	var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
-	var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
-	drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
-	      drawArrow (0, -M_HAND_ARM, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
-      }
+				drawArrow(0,-fScale*JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv  
+				drawArrow(fScale*JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
+				var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
+				var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
+				drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
+	      	drawArrow (0, -M_HAND_ARM, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
+      	}
     }
 
     function runMotion() {
@@ -397,11 +394,7 @@ function myTouchMove(event){
 	event.preventDefault();
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
-	//var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
-//	var xClick = event.targetTouches[0].pageX - BB.left;
-var xClick = event.targetTouches[0].clientX - BB.left;
-	//var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
-	//var yClick = event.targetTouches[0].pageY - BB.top;
+	var xClick = event.targetTouches[0].clientX - BB.left;
 	var yClick = event.targetTouches[0].clientY - BB.top;
 	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'move');
 }
@@ -410,8 +403,6 @@ function myTouchStart(event){
 	event.preventDefault();
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
-/*	var xClick = event.targetTouches[0].pageX - BB.left;
-	var yClick = event.targetTouches[0].pageY - BB.top;*/
 	var xClick = event.targetTouches[0].clientX - BB.left;
 	var yClick = event.targetTouches[0].clientY - BB.top;
 	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'down');
@@ -421,10 +412,7 @@ function myTouchEnd(event){
 	event.preventDefault();
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
-/*	var xClick = event.targetTouches[0].pageX - BB.left;
-	var yClick = event.targetTouches[0].pageY - BB.top;
-	*/
-		var xClick = event.targetTouches[0].clientX - BB.left;
+	var xClick = event.targetTouches[0].clientX - BB.left;
 	var yClick = event.targetTouches[0].clientY - BB.top;
 	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'up');
 }
@@ -546,21 +534,10 @@ function formIO(){
 }
 </script>
 
-                            <!--<a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a>-->
-                            <!--<br>
-                            <input type="button" name="calcBtn" value="Check out!" onclick="billme(document.order)" />
-                            <input type="reset" name="resetBtn" value="Clear Form" />
-                            <br>
-                            <br>
-                            The F<sub>AH</sub> is: <input type="text" name="subtotalBox" size="6" value="0" /><br>
-    -->
+            
 </div>
             </div>
-            
             <p align=center>
-
-                
-
             </p>
         </div>
     </div>
@@ -574,8 +551,6 @@ function formIO(){
             </div>
         </div>
     </div>
- <!--   <script src="scripts\base3.js"></script> -->
-
 </body>
 </html>
 

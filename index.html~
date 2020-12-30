@@ -60,7 +60,7 @@
                             <li class="active"><a href="index.html">Simulation I</a></li>
                             <li><a href="sim2.html">Simulation II</a></li>
                             <li><a href="sim3.html">Simulation III</a></li>
-                          <li><a href="sim4.html">Simulation IV</a></li>
+                           <!-- <li><a href="contact.html">Contact</a></li>-->
                         </ul>
                     </div><!-- /.navbar-collapse -->
                     <!-- start soc_icons -->
