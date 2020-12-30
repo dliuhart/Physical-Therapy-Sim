@@ -62,7 +62,7 @@
         <!-- start main -->
         <div class="container">
             <div class="about row">
-                <h2>Simulation of a Shoulder I</h2>
+                <h2>Simulation of a Shoulder IV</h2>
                 <p class="para">
                     <font color="red">Objectives:</font> 
                     muscle
@@ -87,8 +87,8 @@
     <canvas id="myCanvas" style="display: block; position: absolute; margin: 0 auto;display: block;
         position: absolute; margin: 0 auto; top: 0px; bottom: 0; left: 0; right: 0;" width="820" height="820"></canvas>
                          <script>
-
-// Simulation first posted on 10-4-2017, written by Andrew Duffy
+// Simulation written 12-2020, Matthew Burk and Dan Liu
+// Contains code from "Friction on an Incline" first posted on 10-4-2017, written by Andrew Duffy http://physics.bu.edu/~duffy/HTML5/friction_on_ramp.html
 
 
 
@@ -204,7 +204,7 @@
 
            drawSlider(thetasliderX, thetasliderY, thetasliderXMin, thetasliderXMax, thetasliderValueMin, thetasliderValueMax, thetasliderValue, thetasliderDecimals);
            var sLabel = 'Angle θ = ';
-           sLabel = sLabel + thetasliderValue.toFixed(thetasliderDecimals) + ' degrees';
+           sLabel = sLabel + -1*thetasliderValue.toFixed(thetasliderDecimals) + ' degrees'; //invert sign! 
            context.font = '16pt Calibri';
            context.textAlign = 'center';
            context.textBaseline = 'middle';
@@ -521,8 +521,8 @@ function myTouchEnd(event){
 <script> 
 document.getElementById('calcBtn').addEventListener('click', formIO);  //this needs to be below the form in the HTML
 function formIO(){
-	 weight = parseFloat(document.getElementById('W').value);
-	 height = parseFloat(document.getElementById('H').value);
+	weight = parseFloat(document.getElementById('W').value);
+	height = parseFloat(document.getElementById('H').value);
 //	 wball = parseFloat(document.getElementById('WL').value);
 	document.getElementById('WL').value = wball
 	document.getElementById('fdelt').value = fdeltoid;

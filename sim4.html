@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Simulation of a Shoulder IV</title>
+    <title>Simulation of a Shoulder II</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +62,7 @@
         <!-- start main -->
         <div class="container">
             <div class="about row">
-                <h2>Simulation of a Shoulder I</h2>
+                <h2>Simulation of a Shoulder II</h2>
                 <p class="para">
                     <font color="red">Objectives:</font> 
                     muscle
@@ -204,7 +204,7 @@
 
            drawSlider(thetasliderX, thetasliderY, thetasliderXMin, thetasliderXMax, thetasliderValueMin, thetasliderValueMax, thetasliderValue, thetasliderDecimals);
            var sLabel = 'Angle θ = ';
-           sLabel = sLabel + thetasliderValue.toFixed(thetasliderDecimals) + ' degrees';
+           sLabel = sLabel + -1*thetasliderValue.toFixed(thetasliderDecimals) + ' degrees'; //invert sign! 
            context.font = '16pt Calibri';
            context.textAlign = 'center';
            context.textBaseline = 'middle';
@@ -521,8 +521,8 @@ function myTouchEnd(event){
 <script> 
 document.getElementById('calcBtn').addEventListener('click', formIO);  //this needs to be below the form in the HTML
 function formIO(){
-	 weight = parseFloat(document.getElementById('W').value);
-	 height = parseFloat(document.getElementById('H').value);
+	weight = parseFloat(document.getElementById('W').value);
+	height = parseFloat(document.getElementById('H').value);
 //	 wball = parseFloat(document.getElementById('WL').value);
 	document.getElementById('WL').value = wball
 	document.getElementById('fdelt').value = fdeltoid;

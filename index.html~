@@ -5,7 +5,7 @@
     <title>Simulation of Back and Arms | About </title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+  <!--  <link href="css/bootstrap.css" rel='stylesheet' type='text/css' /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--[if lt IE 9]>
@@ -15,7 +15,6 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- start plugins -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!----font-Awesome----->
     <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
@@ -60,7 +59,7 @@
                             <li class="active"><a href="index.html">Simulation I</a></li>
                             <li><a href="sim2.html">Simulation II</a></li>
                             <li><a href="sim3.html">Simulation III</a></li>
-                           <!-- <li><a href="contact.html">Contact</a></li>-->
+                          <li><a href="sim4.html">Simulation IV</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                     <!-- start soc_icons -->
