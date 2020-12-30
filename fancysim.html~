@@ -398,11 +398,9 @@ function myTouchMove(event){
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
 	//var xClick = event.targetTouches[0].pageX - canvasesdiv.offsetLeft;
-//	var xClick = event.targetTouches[0].pageX - BB.left;
-var xClick = event.targetTouches[0].clientX - BB.left;
+	var xClick = event.targetTouches[0].pageX - BB.left;
 	//var yClick = event.targetTouches[0].pageY - canvasesdiv.offsetTop;
-	//var yClick = event.targetTouches[0].pageY - BB.top;
-	var yClick = event.targetTouches[0].clientY - BB.top;
+	var yClick = event.targetTouches[0].pageY - BB.top;
 	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'move');
 }
 
@@ -410,10 +408,8 @@ function myTouchStart(event){
 	event.preventDefault();
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
-/*	var xClick = event.targetTouches[0].pageX - BB.left;
-	var yClick = event.targetTouches[0].pageY - BB.top;*/
-	var xClick = event.targetTouches[0].clientX - BB.left;
-	var yClick = event.targetTouches[0].clientY - BB.top;
+	var xClick = event.targetTouches[0].pageX - BB.left;
+	var yClick = event.targetTouches[0].pageY - BB.top;
 	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'down');
 }
 
@@ -421,11 +417,8 @@ function myTouchEnd(event){
 	event.preventDefault();
 	var canvas=document.getElementById('myCanvas');
 	var BB=canvas.getBoundingClientRect();
-/*	var xClick = event.targetTouches[0].pageX - BB.left;
+	var xClick = event.targetTouches[0].pageX - BB.left;
 	var yClick = event.targetTouches[0].pageY - BB.top;
-	*/
-		var xClick = event.targetTouches[0].clientX - BB.left;
-	var yClick = event.targetTouches[0].clientY - BB.top;
 	whereClicked(xClick * canvas.width / canvas.clientWidth ,yClick * canvas.height / canvas.clientHeight,'up');
 }
 
