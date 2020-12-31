@@ -64,12 +64,12 @@
             <div class="about row">
                 <h2>Simulation of a Shoulder II</h2>
                 <p class="para">
-                    <font color="red">Objectives:</font> 
-                    muscle
-                    &nbsp    1.	Apply the conditions of equilibrium to determine the amount of force that is exerted by the person’s deltoid  F<sub>deltoid</sub> when the person holds a ball with the arm horizontally.
-                    &nbsp 2.	Calculate the magnitude and direction of the force on the shoulder.
-                    &nbsp 3.	Find out how F<sub>deltoid</sub> and the force on the person’s shoulder depend on the mass of the ball.
-
+                    <font color="red">Objectives:</font> </br>
+                    
+                    &nbsp    1.	Find out how F<sub>deltoid</sub>, JRFh, JRFv and JRF on the person’s shoulder depend on the mass of the ball. </br>
+                    &nbsp 2.	Observe how F<sub>deltoid</sub>, JRFh, JRFv and JRF change when the arm moves up and down; Discover the easiest and most challenging positions for the person. </br>
+                    &nbsp 3.	Relate the simulations to life experience and be able to explain the results by applying the knowledge of equilibrium. </br>
+There are four forces in the diagram, the joint reaction force JRF on the shoulder (the two components of JRF, JRF_h and JRF_v are labeled in red); the force that is exerted by the person’s deltoid muscle (orange), the weight of arm and hand W_AH (blue) and the weight of ball W_bal. (green). With the motion of arm and the weight of ball change, the arrows show the difference in magnitudes. </br>
 </p>
                 <!-- <a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a> -->
             </div>
@@ -132,7 +132,7 @@
       var thetasliderX = 680; //was 510
       var thetasliderY = photoyoffset + 70;  //was 340+photoyoffset
       var thetasliderXMin = photoyoffset+photow-150; // seems to be a ~150 pixel offset somewhere in the slider code
-      var thetasliderXMax = thetasliderXMin + 181;
+      var thetasliderXMax = thetasliderXMin + 182;
       var thetasliderValueMin = -90.0;
       var thetasliderValueMax = 90.0;
       var thetasliderValue = theta;
@@ -169,10 +169,26 @@
 		armless.src = "images/Armless.png";	
 		var armonly=new Image()
 		armonly.src = "images/Armonly.png";
+		var armlessHA = new Image();
+		armlessHA.src = "images/Armless-HA.png";
+		var armlessVHA = new Image();
+		armlessVHA.src = "images/Armless-VHA.png";
 
 		armless.onload = function(){	
          context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
 			drawMotion();
+     	}
+     	armlessHA.onload = function(){	
+        if ((theta< 0) && (theta > -50)) {
+			context.drawImage(armlessHA,photoxoffset, photoyoffset, photow, photoh);
+			drawMotion();
+					} 
+     	}
+     	armlessVHA.onload = function(){	
+        if (theta <= -50) {
+			context.drawImage(armlessVHA,photoxoffset, photoyoffset, photow, photoh);
+			drawMotion();
+					} 
      	}
 	armonly.onload = function(){
 		context.save();
@@ -222,7 +238,14 @@
 
        
 //draw the arm and torso images
+		if ((theta < 0) && (theta > -50)) {
+				context.drawImage(armlessHA,photoxoffset, photoyoffset, photow, photoh);
+					} else if (theta <= -50) {
+				context.drawImage(armlessVHA,photoxoffset, photoyoffset, photow, photoh);
+					} else if (theta >=0) {
 				context.drawImage(armless,photoxoffset, photoyoffset, photow, photoh);
+							}
+				
 				context.save();
 				context.translate(shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset);
 				context.rotate(theta*Math.PI/180.0)
@@ -260,7 +283,8 @@
 				drawArrow(fScale*JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
 				var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 				var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
-				drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball
+			//	drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball at ball center of mass
+				drawArrow(0,-wball,Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh+photoyoffset, "green"); //Wball
 	      	drawArrow (0, -M_HAND_ARM, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
       	}
     }
@@ -423,15 +447,16 @@ function myTouchEnd(event){
                     
                         <h4><span>Instructions:</span></h4>
                         <p class="para">
-                            Activity 1. In the following table, please input the height of the person, the weight of the person and the weight of the ball.
-                            The weight and length of the arm and hand are calculated based on a normally proportioned person. 
+                            According to your investigation case, you can replace initial values of the weight and height of the person. 
+                            Similarly, the position of the arm and the weight of ball can be changed with the slider bars. 
+                             Once the input is set up, you can click “Calculate” button to obtain the values of each force and its lever arm.
+                              Notes: The simulation is calculated based on a normally proportioned person. The weight of ball approximately acts on
+                             the hand, the end of the blue line.
              
                             
 
 </p>
-                        <p class="para">When you try to find the optimal posture for lifting a load to avoid potential injury, you aim to find low values on erector spinae muscle and the joint reaction force. 
-                            (Hint: in order to achieve the goal, please control variables by keeping weight and height of the person, weight of the load fixed and changing  &#920<sub>TNH</sub>  and &#920<sub>AH</sub>  values.)
-                            </p>
+                        
 
                     <!--    <br>Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
                             &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
@@ -489,7 +514,7 @@ function myTouchEnd(event){
                                 <tr>
                                     <td>&nbsp Ball</td>
                                     <td>
-                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="6">
+                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="NA">
                                         lb.
                                     </td>
                                     <td>
