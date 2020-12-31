@@ -102,7 +102,7 @@
                     
                         <h4><span>Instructions:</span></h4>
                         <p class="para">
-                            In the following table, please input the height of the person, H_p, the weight of the person, W_p and the weight of the ball, W_bal. 
+                            In the following table, please input the height of the person, H_p, the weight of the person, W<sub>p</sub> and the weight of the ball, W<sub>bal</sub>. 
                             The simulation is calculated based on a normal proportional person. The weight of ball approximately acts on the hand, the end of the 
                             blue line. Once the input is set up, you can click “Calculate” button to obtain the values for each force and its lever arm. 
              
