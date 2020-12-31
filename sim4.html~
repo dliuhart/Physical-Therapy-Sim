@@ -223,8 +223,8 @@
        // draw theta slider
 
            drawSlider(thetasliderX, thetasliderY, thetasliderXMin, thetasliderXMax, thetasliderValueMin, thetasliderValueMax, thetasliderValue, thetasliderDecimals);
-           var sLabel = 'Angle θ = ';
-           sLabel = sLabel + -1*thetasliderValue.toFixed(thetasliderDecimals) + ' degrees'; //invert sign! 
+           var sLabel = 'Angle of arm θ = ';
+           sLabel = sLabel + -1*thetasliderValue.toFixed(thetasliderDecimals) + ' \xB0'; //invert sign! 
            context.font = '16pt Calibri';
            context.textAlign = 'center';
            context.textBaseline = 'middle';
@@ -475,7 +475,7 @@ function myTouchEnd(event){
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
-                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>D</sub>= 15&#730 
+                            &nbsp&nbsp&nbsp&nbsp&nbsp The angle between the deltoid muscle and the arm &#920<sub>Deltoid</sub>= 15&#730 
                             <!--<input type="text" name="THETAES" size="6" value="fixed" /> 
                             -->
 
