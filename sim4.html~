@@ -65,8 +65,8 @@
                 <h2>Simulation of a Shoulder II</h2>
                 <p class="para">
                 There are four forces in the diagram, the joint reaction force JRF on the shoulder (the two components of JRF, JRF<sub>h</sub> and JRF<sub>v</sub> are labeled in red); 
-                the force that is exerted by the person’s deltoid muscle (orange), the weight of arm and hand W<sub>AH</sub> (blue) and the weight of ball W<sub>ball</sub>. (green).
-                With the motion of arm and the weight of ball change, the arrows show the difference in magnitudes. </br>
+                the force that is exerted by the person’s deltoid muscle, F<sub>deltoid</sub> (orange), the weight of arm and hand W<sub>AH</sub> (blue) and the weight of ball W<sub>ball</sub>. (green).
+                As the angle of the arm and the weight of the ball change, the arrows show the difference in magnitudes. </br>
                     <font color="red">Objectives:</font> </br>
                     
                     &nbsp    1.	Find out how F<sub>deltoid</sub>, JRF<sub>h</sub>, JRF<sub>v</sub> and JRF on the person’s shoulder depend on the mass of the ball. </br>
