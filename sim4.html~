@@ -148,7 +148,7 @@
       var wballsliderXMin = photoyoffset+photow - 150;
       var wballsliderXMax = wballsliderXMin + 220;
       var wballsliderValueMin = 0.0;
-      var wballsliderValueMax = 10.0;
+      var wballsliderValueMax = 50.0;
       var wballsliderValue = wball;
       var wballsliderDecimals = 1;
 

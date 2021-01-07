@@ -148,7 +148,7 @@
       var wballsliderXMin = photoyoffset+photow - 150;
       var wballsliderXMax = wballsliderXMin + 220;
       var wballsliderValueMin = 0.0;
-      var wballsliderValueMax = 10.0;
+      var wballsliderValueMax = 50.0;
       var wballsliderValue = wball;
       var wballsliderDecimals = 1;
 
@@ -159,7 +159,7 @@
 		const shoulderdeltoidrel =169/652-shoulderxrel
 		const armlen = ballxrel - shoulderxrel;
 //constants for the calculation, may not be the same as those used for the image.  FIXME change to var, case.
-		var height = 1.674  //meters, equiv to 5'6''   Will be overwritten with form input after user hits button.
+		var height = 1.7  //meters, ~equiv to 5'6''   Will be overwritten with form input after user hits button.
 		var wball = 2.7  // Will be overwritten with form input after user hits button. rounded to wballsliderdecimals in reset(). inital value really set by wballsliderX initiallization.
 		var weight = 609  // N , 66.22 kg, .   Will be overwritten with form input after user hits button.
 		var ARMLEN = 0.389 * height	
@@ -471,7 +471,7 @@ function myTouchEnd(event){
 -->
                         <form id=order name=order>
                             Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="609">N.
-                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="1.674">m
+                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="1.7">m
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
