@@ -127,7 +127,7 @@
       var thetaMax = 90.0;
       var mu = 0.5;
 
-		const fScale = 0.2 //Scaling factor for Fdeltoid, JRFv, JRFh
+		const fScale = 0.2/4.4 //Scaling factor for Fdeltoid, JRFv, JRFh
 		const photow = 652*0.75;
 		const photoh = 400*0.75;
 		const photoxoffset = 75;
@@ -161,7 +161,7 @@
 //constants for the calculation, may not be the same as those used for the image.  FIXME change to var, case.
 		var height = 1.674  //meters, equiv to 5'6''   Will be overwritten with form input after user hits button.
 		var wball = 2.7  // Will be overwritten with form input after user hits button. rounded to wballsliderdecimals in reset(). inital value really set by wballsliderX initiallization.
-		var weight = 146  // lb , 66.22 kg, .   Will be overwritten with form input after user hits button.
+		var weight = 609  // N , 66.22 kg, .   Will be overwritten with form input after user hits button.
 		var ARMLEN = 0.389 * height	
 		const DELT_INS_PT = 0.25 
 		const ARM_COM = 0.46
@@ -233,7 +233,7 @@
 
            drawSlider(wballsliderX, wballsliderY, wballsliderXMin, wballsliderXMax, wballsliderValueMin, wballsliderValueMax, wballsliderValue, wballsliderDecimals);
            var sLabel = 'Weight of ball = ';
-           sLabel = sLabel + wballsliderValue.toFixed(wballsliderDecimals) + ' lb ';
+           sLabel = sLabel + wballsliderValue.toFixed(wballsliderDecimals) + ' N ';
            context.font = '16pt Calibri';
            context.textAlign = 'center';
            context.textBaseline = 'middle';
@@ -288,8 +288,8 @@
 				var ballshoulderrad = Math.sqrt((ballxrel*photow-shoulderxrel*photow)**2+(ballyrel*photoh-shoulderxrel*photow)**2);
 				var ballshoulderangle = theta + 180.0*Math.atan((ballyrel*photoh-shoulderyrel*photoh)/(ballxrel*photow-shoulderxrel*photow))/(Math.PI);
 			//	drawArrow(0,-wball,Math.cos(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderxrel*photow+photoxoffset, Math.sin(ballshoulderangle*Math.PI/180.0)*ballshoulderrad+shoulderyrel*photoh+photoyoffset, "green"); //Wball at ball center of mass
-				drawArrow(0,-wball,Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh+photoyoffset, "green"); //Wball
-	      	drawArrow (0, -M_HAND_ARM, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
+				drawArrow(0,-wball/4.4,Math.cos(theta*Math.PI/180.0)*armlen*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*armlen*photow+shoulderyrel*photoh+photoyoffset, "green"); //Wball
+	      	drawArrow (0, -M_HAND_ARM/4.4, Math.cos(theta*Math.PI/180.0)*(0.46*armlen)*photow+shoulderxrel*photow+photoxoffset, Math.sin(theta*Math.PI/180.0)*0.46*armlen*photow+shoulderyrel*photoh+photoyoffset, "blue"); //Wah
       	}
     }
 
@@ -461,7 +461,7 @@ function myTouchEnd(event){
 </p>
                         
 
-                    <!--    <br>Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
+                    <!--    <br>Weight of the person W= <input type="text" name="W" size="6" value="0">N.
                             &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
                         </br>
                         &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
@@ -470,7 +470,7 @@ function myTouchEnd(event){
                         
 -->
                         <form id=order name=order>
-                            Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="146">lb.
+                            Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="609">N.
                             &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="1.674">m
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
@@ -482,7 +482,7 @@ function myTouchEnd(event){
                             <table style="width:100%">
                                 <!--   <tr>
             <th colspan="3">
-                Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
+                Weight of the person W= <input type="text" name="W" size="6" value="0">N.
                 &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
                 <br>
                 &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
@@ -498,7 +498,7 @@ function myTouchEnd(event){
                                 </tr>
                                <!-- <tr>
                                     <td>&nbsp TNH</td>
-                                    <td>&nbsp W<sub>TNH</sub>= <input type="text" name="WTNH" size="6" value="NA" />lb.</td>
+                                    <td>&nbsp W<sub>TNH</sub>= <input type="text" name="WTNH" size="6" value="NA" />N.</td>
                                     <td>
                                         &nbsp
                                         LA<sub>TNH</sub>=<input type="text" name="LATNH" size="6" value="NA" />
@@ -507,7 +507,7 @@ function myTouchEnd(event){
                                 </tr>-->
                                 <tr>
                                     <td>&nbsp AH</td>
-                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" id="WAH" size="6" value="NA" />lb.</td>
+                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" id="WAH" size="6" value="NA" />N.</td>
                                     <td>
                                         &nbsp
                                         LA<sub>AH</sub>=<input type="text" name="LAWAH" id="LAWAH" size="6" value="NA" />
@@ -518,7 +518,7 @@ function myTouchEnd(event){
                                     <td>&nbsp Ball</td>
                                     <td>
                                         &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="NA">
-                                        lb.
+                                        N.
                                     </td>
                                     <td>
                                         &nbsp
@@ -530,7 +530,7 @@ function myTouchEnd(event){
                                     <td>&nbsp Deltoid</td>
                                     <td>
                                         &nbsp
-                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" id="fdelt" size="6" value="NA" />lb.
+                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" id="fdelt" size="6" value="NA" />N.
                                     </td>
                                     <td>
                                         &nbsp
@@ -539,7 +539,7 @@ function myTouchEnd(event){
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" id="JRF" size="6" value="NA" />lb.</td>
+                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" id="JRF" size="6" value="NA" />N.</td>
 
                                 </tr>
                             </table>
