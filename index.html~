@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Simulation of Back and Arms | About </title>
+    <title>Simulation of Back and Arms </title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
   <!--  <link href="css/bootstrap.css" rel='stylesheet' type='text/css' /> -->
@@ -16,9 +16,9 @@
     <!-- start plugins -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!----font-Awesome----->
+    <!----font-Awesome--- -->
     <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
-    <!----font-Awesome----->
+    <!----font-Awesome--- -->
     <style>
         table, th, td {
             border: 2px solid black;
@@ -31,9 +31,8 @@
         <div class="container">
             <div class="row header">
                 <div class="logo navbar-left">
-                    <h1 style="color:whitesmoke;">University of Hartford Physical Therapy Simulation</h1>
-                </div>
-              <!--  <div class="h_search navbar-right">
+                    <h1 style="color:whitesmoke;">Simulations of the Human Body</h1>
+                </div>>
                     <form>
                         <input type="text" class="text" value="Enter text here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter text here';}">
                         <input type="submit" value="search">
@@ -56,10 +55,10 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <!--<li><a href="index.html">Home</a></li>-->
-                            <li class="active"><a href="index.html">Simulation I</a></li>
-                            <li><a href="sim2.html">Simulation II</a></li>
-                            <li><a href="sim3.html">Simulation III</a></li>
-                          <li><a href="sim4.html">Simulation IV</a></li>
+                            <li class="active"><a href="index.html">Back I</a></li>
+                            <li><a href="sim2.html">Back II</a></li>
+                            <li><a href="sim3.html">Shoulder I</a></li>
+                          <li><a href="sim4.html">Shoulder II</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                     <!-- start soc_icons -->
@@ -103,11 +102,11 @@
 </p>
                         <p class="para">Download the photo(<a href="images/Therapy.png" download>Click to download the image</a>) and find the lever arm values by using a digital measurement tool. (Information of the image: the load is 30 cm high. Please use this information for calibration.)</p>
                         
-                        Weight of the person W<sub>P</sub>= <input type="text" name="W" size="2" value="0">lb.
+                        Weight of the person W<sub>P</sub>= <input type="text" name="W" size="2" value="0">N.
                         <table style="width:100%">
                          <!--  <tr>
                                 <th colspan="3">
-                                    Weight of the person W= <input type="text" name="W" size="2" value="0">lb.
+                                    Weight of the person W= <input type="text" name="W" size="2" value="0">N.
                                 </th>
 
                             </tr>
@@ -119,14 +118,14 @@
                             </tr>
                             <tr>
                                 <td>&nbsp TNH</td>
-                                <td>&nbsp W<sub>TNH</sub>= 54.5% of weight(W)= <input type="text" name="WTNH" size="6" value="NA" />lb.</td>
+                                <td>&nbsp W<sub>TNH</sub>= 54.5% of weight(W)= <input type="text" name="WTNH" size="6" value="NA" />N.</td>
                                 <td>
                                     &nbsp LA<sub>TNH</sub>=<input type="text" name="LATNH" size="6" value="0">
                                 m</td>
                             </tr>
                             <tr>
                                 <td>&nbsp AH</td>
-                                <td>&nbsp W<sub>AH</sub>= 10.7% of weight(W)=<input type="text" name="WAH" size="6" value="NA" />lb.</td>
+                                <td>&nbsp W<sub>AH</sub>= 10.7% of weight(W)=<input type="text" name="WAH" size="6" value="NA" />N.</td>
                                 <td>
                                     &nbsp LA<sub>AH</sub>=<input type="text" name="LAWAH" size="6" value="0">
                                 m</td>
@@ -135,7 +134,7 @@
                                 <td>&nbsp Load</td>
                                 <td>
                                     &nbsp W<sub>L</sub>=<input type="text" name="WL" size="6" value="0">
-                                    lb.
+                                    N.
                                 </td>
                                 <td>
                                     &nbsp  LA<sub>L</sub>=<input type="text" name="LAWL" size="6" value="0">
@@ -144,7 +143,7 @@
                             <tr>
                                 <td>&nbsp ES</td>
                                 <td>
-                                    &nbsp The F<sub>ES</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />lb.
+                                    &nbsp The F<sub>ES</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />N.
                                 </td>
                                 <td>
                                     &nbsp LA<sub>ES</sub>=<input type="text" name="LAES" size="6" value="0">

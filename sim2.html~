@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row header">
                 <div class="logo navbar-left">
-                    <h1 style="color:whitesmoke;">University of Hartford Physical Therapy Simulation</h1>
+                    <h1 style="color:whitesmoke;">Simulations of the Human Body</h1>
                 </div>
                <!-- <div class="h_search navbar-right">
                     <form>
@@ -111,7 +111,7 @@
                             (Hint: in order to achieve the goal, please control variables by keeping weight and height of the person, weight of the load fixed and changing  &#920<sub>TNH</sub>  and &#920<sub>AH</sub>  values.)
                             </p>
 
-                    <!--    <br>Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
+                    <!--    <br>Weight of the person W= <input type="text" name="W" size="6" value="0">N.
                             &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
                         </br>
                         &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
@@ -120,7 +120,7 @@
                         
 -->
                         <form id=order name=order>
-                            Weight of the person W<sub>P</sub>= <input type="text" name="W" size="6" value="0">lb.
+                            Weight of the person W<sub>P</sub>= <input type="text" name="W" size="6" value="0">N.
                             &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" size="6" value="0">m
                             <br>
                             &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
@@ -132,7 +132,7 @@
                             <table style="width:100%">
                                 <!--   <tr>
             <th colspan="3">
-                Weight of the person W= <input type="text" name="W" size="6" value="0">lb.
+                Weight of the person W= <input type="text" name="W" size="6" value="0">N.
                 &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H= <input type="text" name="H" size="6" value="0">m
                 <br>
                 &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
@@ -148,7 +148,7 @@
                                 </tr>
                                 <tr>
                                     <td>&nbsp TNH</td>
-                                    <td>&nbsp W<sub>TNH</sub>= <input type="text" name="WTNH" size="6" value="NA" />lb.</td>
+                                    <td>&nbsp W<sub>TNH</sub>= <input type="text" name="WTNH" size="6" value="NA" />N.</td>
                                     <td>
                                         &nbsp
                                         LA<sub>TNH</sub>=<input type="text" name="LATNH" size="6" value="NA" />
@@ -157,7 +157,7 @@
                                 </tr>
                                 <tr>
                                     <td>&nbsp AH</td>
-                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" size="6" value="NA" />lb.</td>
+                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" size="6" value="NA" />N.</td>
                                     <td>
                                         &nbsp
                                         LA<sub>AH</sub>=<input type="text" name="LAWAH" size="6" value="NA" />
@@ -168,7 +168,7 @@
                                     <td>&nbsp Load</td>
                                     <td>
                                         &nbsp W<sub>L</sub>=<input type="text" name="WL" size="6" value="0">
-                                        lb.
+                                        N.
                                     </td>
                                     <td>
                                         &nbsp
@@ -180,7 +180,7 @@
                                     <td>&nbsp ES</td>
                                     <td>
                                         &nbsp
-                                        The F<sub>ES</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />lb.
+                                        The F<sub>ES</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />N.
                                     </td>
                                     <td>
                                         &nbsp
@@ -189,7 +189,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" size="6" value="NA" />lb.</td>
+                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" size="6" value="NA" />N.</td>
 
                                 </tr>
                             </table>

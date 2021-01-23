@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row header">
                 <div class="logo navbar-left">
-                    <h1 style="color:whitesmoke;">University of Hartford Physical Therapy Simulation</h1>
+                    <h1 style="color:whitesmoke;">Simulations of the Human Body</h1>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -46,10 +46,10 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <!--<li><a href="index.html">Home</a></li>-->
-                            <li ><a href="index.html">Simulation I</a></li>
-                            <li ><a href="sim2.html">Simulation II</a></li>
-                            <li ><a href="sim3.html">Simulation III</a></li> 
-    			    <li class="active"><a href="sim4.html">Simulation IV</a></li>
+                            <li ><a href="index.html">Shoulder I</a></li>
+                            <li ><a href="sim2.html">Shoulder II</a></li>
+                            <li ><a href="sim3.html">Back I</a></li> 
+    			    <li class="active"><a href="sim4.html">Back II</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                     <!-- start soc_icons -->
@@ -159,7 +159,7 @@
 		const shoulderdeltoidrel =169/652-shoulderxrel
 		const armlen = ballxrel - shoulderxrel;
 //constants for the calculation, may not be the same as those used for the image.  FIXME change to var, case.
-		var height = 1.674  //meters, equiv to 5'6''   Will be overwritten with form input after user hits button.
+		var height = 1.7  //meters, ~equiv to 5'6''   Will be overwritten with form input after user hits button.
 		var wball = 2.7  // Will be overwritten with form input after user hits button. rounded to wballsliderdecimals in reset(). inital value really set by wballsliderX initiallization.
 		var weight = 609  // N , 66.22 kg, .   Will be overwritten with form input after user hits button.
 		var ARMLEN = 0.389 * height	
@@ -281,7 +281,7 @@
 	 //draw arrows on photo  function drawArrow(Fx,Fy,Px,Py, arrowColor
 	 			JRFh = fdeltoid * Math.cos((theta+15)*Math.PI/180);
 	 			JRFv = fdeltoid * Math.sin((theta+15)*Math.PI/180)-M_HAND_ARM-wball;
-//console.log("JRFh =" + JRFh);
+//console.log("JRFh =" + JRFh); 
 //console.log("JRFv =" + JRFv);
 				drawArrow(0,-fScale*JRFv,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFv  
 				drawArrow(fScale*JRFh,0,shoulderxrel*photow+photoxoffset, shoulderyrel*photoh+photoyoffset, "red");  //JRFh  
@@ -471,7 +471,7 @@ function myTouchEnd(event){
 -->
                         <form id=order name=order>
                             Weight of the person W<sub>P</sub>= <input type="text" name="W" id="W" size="6" value="609">N.
-                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="1.674">m
+                            &nbsp&nbsp&nbsp&nbsp&nbsp Height of the person H<sub>P</sub>= <input type="text" name="H" id="H" size="6" value="1.7">m
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->

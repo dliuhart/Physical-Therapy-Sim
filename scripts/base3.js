@@ -15,7 +15,7 @@ function billme()
          var GH=0.46*GP;
         var   LAWAH= GH;// In html, it is LAAH ??
         var LAWL = GP;
-        var es = 15*Math.PI/180  // for 12 degree
+        var es = 15*Math.PI/180  // for 15 degree
         var LAES = 0.25*GP * Math.sin(es);
         var THETAES=15;
         
