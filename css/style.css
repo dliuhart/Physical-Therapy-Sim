@@ -320,7 +320,7 @@ body {
 }
 .about h2{
 	margin: 0 0 20px;
-	text-transform: capitalize;
+	<!-- text-transform: capitalize; -->
 	font-size: 3em;
 	color:#3b3b3b;
 	font-family: 'texgyreadventorregular';
