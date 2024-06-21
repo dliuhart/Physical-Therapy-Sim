@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Simulation of a Shoulder and an Arm II</title>
+    <title>Simulation of an Upper Limb II</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,20 +63,20 @@
         <!-- start main -->
         <div class="container">
             <div class="about row">
-                <h2>Simulation of a Shoulder and an Arm II</h2>
+                <h2>Simulation of an Upper Limb II</h2>
                 <p class="para">
-                There are four forces in the diagram, the joint reaction force JRF on the shoulder (the two components of JRF, JRF<sub>h</sub> and JRF<sub>v</sub> are labeled in red); 
-                the force that is exerted by the person’s deltoid muscle, F<sub>deltoid</sub> (orange), the weight of arm and hand W<sub>AH</sub> (blue) and the weight of ball W<sub>ball</sub>. (green).
+                There are four forces in the diagram, the joint reaction force on the shoulder (the two components of JRF<sub>s</sub>, JRF<sub>sh</sub> and JRF<sub>sv</sub> are labeled in red); 
+                the force that is exerted by the person’s deltoid muscle, F<sub>del</sub> (orange), the weight of arm and hand W<sub>A</sub> (blue) and the weight of ball W<sub>bal</sub>. (green).
                 As the angle of the arm and the weight of the ball change, the arrows show the differences in the directions and magnitudes of forces.  Notes: The simulation is calculated based on a normally 
                 proportioned person. The weight of ball approximately acts on the hand, the end of the blue line.</br>
                     <font color="red">Objectives:</font> </br>
                     
-                    &nbsp    1.	Find out how F<sub>deltoid</sub>, JRF<sub>h</sub>, JRF<sub>v</sub> and JRF depend on the mass of the ball. </br>
-                    &nbsp 2.	Observe how F<sub>deltoid</sub>, JRF<sub>h</sub>, JRF<sub>v</sub> and JRF change when the arm moves up and down; discover the easiest and most challenging positions for the person. </br>
+                    &nbsp    1.	Find out how F<sub>del</sub>, JRF<sub>sh</sub>, JRF<sub>sv</sub> and JRF<sub>s</sub> depend on the mass of the ball. </br>
+                    &nbsp 2.	Observe how F<sub>del</sub>, JRF<sub>sh</sub>, JRF<sub>sv</sub> and JRF<sub>s</sub> change when the arm moves up and down; discover the easiest and most challenging positions for the person. </br>
                     &nbsp 3.	Be able to relate the simulations to life experience and explain the results by applying the knowledge of equilibrium. </br>
 
 </p>
-                <!-- <a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a> -->
+                 <a href="Simulation II note.pdf" class="fa-btn btn-1 btn-1e">Teaching Notes</a> 
             </div>
         </div>
     </div><!-- end main -->
@@ -224,7 +224,7 @@
        // draw theta slider
 
            drawSlider(thetasliderX, thetasliderY, thetasliderXMin, thetasliderXMax, thetasliderValueMin, thetasliderValueMax, thetasliderValue, thetasliderDecimals);
-           var sLabel = 'Angle of arm θ = ';
+           var sLabel = 'Angle of arm   = ';
            sLabel = sLabel + -1*thetasliderValue.toFixed(thetasliderDecimals) + ' \xB0'; //invert sign! 
            context.font = '16pt Calibri';
            context.textAlign = 'center';
@@ -476,7 +476,7 @@ function myTouchEnd(event){
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
-                            &nbsp&nbsp&nbsp&nbsp&nbsp The angle between the deltoid muscle and the arm &#920<sub>Deltoid</sub>= 15&#730 
+                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>del</sub>= 15&#730 
                             <!--<input type="text" name="THETAES" size="6" value="fixed" /> 
                             -->
 
@@ -507,23 +507,23 @@ function myTouchEnd(event){
                                     </td>
                                 </tr>-->
                                 <tr>
-                                    <td>&nbsp AH</td>
-                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" id="WAH" size="6" value="NA" />N.</td>
+                                    <td>&nbsp Arm</td>
+                                    <td>&nbsp W<sub>A</sub>= <input type="text" name="WAH" id="WAH" size="6" value="NA" />N.</td>
                                     <td>
                                         &nbsp
-                                        LA<sub>AH</sub>=<input type="text" name="LAWAH" id="LAWAH" size="6" value="NA" />
+                                        LA<sub>A</sub>=<input type="text" name="LAWAH" id="LAWAH" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp Ball</td>
                                     <td>
-                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" id="WL" size="6" value="NA">
+                                        &nbsp W<sub>bal</sub>=<input type="text" name="WL" id="WL" size="6" value="NA">
                                         N.
                                     </td>
                                     <td>
                                         &nbsp
-                                        LA<sub>ball</sub>=<input type="text" name="LAWL" id="LAWL" size="6" value="NA" />
+                                        LA<sub>bal</sub>=<input type="text" name="LAWL" id="LAWL" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
@@ -531,16 +531,16 @@ function myTouchEnd(event){
                                     <td>&nbsp Deltoid</td>
                                     <td>
                                         &nbsp
-                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" id="fdelt" size="6" value="NA" />N.
+                                         F<sub>del</sub> = <input type="text" name="subtotalBox" id="fdelt" size="6" value="NA" />N.
                                     </td>
                                     <td>
                                         &nbsp
-                                        LA<sub>deltoid</sub>=<input type="text" name="LAES" id="LAES" size="6" value="NA" />
+                                        LA<sub>del</sub>=<input type="text" name="LAES" id="LAES" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" id="JRF" size="6" value="NA" />N.</td>
+					<td colspan="3">&nbsp JRF<sub>s</sub>=<input type="text" name="JRF" id="JRF" size="6" value="NA" />N.</td>
 
                                 </tr>
                             </table>
@@ -549,17 +549,20 @@ function myTouchEnd(event){
                             <input type="reset" name="resetBtn" value="Clear Form" />
 <script> 
 document.getElementById('calcBtn').addEventListener('click', formIO);  //this needs to be below the form in the HTML
+function sf(x) {
+  return x.toPrecision(3);
+}
 function formIO(){
 	weight = parseFloat(document.getElementById('W').value);
 	height = parseFloat(document.getElementById('H').value);
 //	 wball = parseFloat(document.getElementById('WL').value);
-	document.getElementById('WL').value = wball
-	document.getElementById('fdelt').value = fdeltoid;
-	document.getElementById('JRF').value = Math.sqrt(JRFv**2+JRFh**2);
-	document.getElementById('WAH').value = M_HAND_ARM;
-	document.getElementById('LAWAH').value = ARMLEN * ARM_COM * Math.cos(theta*Math.PI/180);
-	document.getElementById('LAWL').value = ARMLEN * Math.cos(theta*Math.PI/180);
-	document.getElementById('LAES').value = ARMLEN * DELT_INS_PT* Math.sin(15*Math.PI/180);
+	document.getElementById('WL').value = sf(wball);
+	document.getElementById('fdelt').value = sf(fdeltoid);
+	document.getElementById('JRF').value = sf(Math.sqrt(JRFv**2+JRFh**2));
+	document.getElementById('WAH').value = sf(M_HAND_ARM);
+	document.getElementById('LAWAH').value = sf(ARMLEN * ARM_COM * Math.cos(theta*Math.PI/180));
+	document.getElementById('LAWL').value = sf(ARMLEN * Math.cos(theta*Math.PI/180));
+	document.getElementById('LAES').value = sf(ARMLEN * DELT_INS_PT* Math.sin(15*Math.PI/180));
 }
 </script>
 

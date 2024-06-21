@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Simulation of a Shoulder and an Arm I</title>
+    <title>Simulation of an Upper Limb I</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
   <!--  <link href="css/bootstrap.css" rel='stylesheet' type='text/css' /> -->
@@ -74,16 +74,16 @@
         <!-- start main -->
         <div class="container">
             <div class="about row">
-                <h2>Simulation of a Shoulder and an Arm I</h2>
+                <h2>Simulation of an Uppper Limb I</h2>
                 <p class="para">
                     <font color="red">Objectives:</font> </br>
                     
-                    &nbsp    1.	Apply the conditions of equilibrium to determine the amount of force that is exerted by the person’s deltoid  F<sub>deltoid</sub> when the person holds a ball with their arm horizontal. </br>
-                    &nbsp 2.	Calculate the magnitude and direction of the Joint Reaction Force (JRF) on the shoulder.</br>
-                    &nbsp 3.	Understand the mechanism by which the small weight of the ball can cause large magnitudes of F<sub>deltoid</sub> and JRF.
+                    &nbsp    1.	Apply the conditions of equilibrium to determine the amount of force that is exerted by the person’s deltoid  F<sub>del</sub> when the person holds a ball with their arm horizontal. </br>
+                    &nbsp 2.	Calculate the magnitude and direction of the Joint Reaction Force on the shoulder (JRF<sub>s</sub>).</br>
+                    &nbsp 3.	Understand the mechanism by which the small weight of the ball can cause large magnitudes of F<sub>del</sub> and JRF<sub>s</sub>.
 
 </p>
-                <!-- <a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a> -->
+                 <a href="Simulation I note.pdf" class="fa-btn btn-1 btn-1e">Teaching notes</a> 
             </div>
         </div>
     </div><!-- end main -->
@@ -126,7 +126,7 @@
                             <br>
                           <!--  &#920<sub>TNH</sub>= <input type="text" name="THETATNH" size="6" value="0">&#730
                             &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>AH</sub>= <input type="text" name="THETAAH" size="6" value="0">&#730-->
-                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920= 15&#730 
+                            &nbsp&nbsp&nbsp&nbsp&nbsp &#920<sub>del</sub>= 15&#730 
                             <!--<input type="text" name="THETAES" size="6" value="fixed" /> 
                             -->
 
@@ -157,23 +157,23 @@
                                     </td>
                                 </tr>-->
                                 <tr>
-                                    <td>&nbsp AH</td>
-                                    <td>&nbsp W<sub>AH</sub>= <input type="text" name="WAH" size="6" value="NA" />N.</td>
+                                    <td>&nbsp Arm</td>
+                                    <td>&nbsp W<sub>A</sub>= <input type="text" name="WAH" size="6" value="NA" />N.</td>
                                     <td>
                                         &nbsp
-                                        LA<sub>AH</sub>=<input type="text" name="LAWAH" size="6" value="NA" />
+                                        LA<sub>A</sub>=<input type="text" name="LAWAH" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp Ball</td>
                                     <td>
-                                        &nbsp W<sub>ball</sub>=<input type="text" name="WL" size="6" value="0">
+                                        &nbsp W<sub>bal</sub>=<input type="text" name="WL" size="6" value="0">
                                         N.
                                     </td>
                                     <td>
                                         &nbsp
-                                        LA<sub>ball</sub>=<input type="text" name="LAWL" size="6" value="NA" />
+                                        LA<sub>bal</sub>=<input type="text" name="LAWL" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
@@ -181,17 +181,21 @@
                                     <td>&nbsp Deltoid</td>
                                     <td>
                                         &nbsp
-                                         F<sub>deltoid</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />N.
+                                         F<sub>del</sub> = <input type="text" name="subtotalBox" size="6" value="NA" />N.
                                     </td>
                                     <td>
                                         &nbsp
-                                        LA<sub>deltoid</sub>=<input type="text" name="LAES" size="6" value="NA" />
+                                        LA<sub>del</sub>=<input type="text" name="LAES" size="6" value="NA" />
                                         m
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">&nbsp JRF=<input type="text" name="JRF" size="6" value="NA" />N.</td>
-
+									<td colspan="1">&nbsp  Component values</td>
+									<td colspan="1">&nbsp JRF<sub>sh</sub>=<input type="text" name="JRFH" size="6" value="NA" />N.</td>
+                                    <td colspan="1">&nbsp JRF<sub>sv</sub>=<input type="text" name="JRFV" size="6" value="NA" />N.</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">&nbsp JRF<sub>s</sub>=<input type="text" name="JRF" size="6" value="NA" />N.</td>
                                 </tr>
                             </table>
                             <br />
@@ -200,11 +204,11 @@
 
                             <!--<a href="single-page.html" class="fa-btn btn-1 btn-1e">read more</a>-->
                             <!--<br>
-                            <input type="button" name="calcBtn" value="Check out!" onclick="billme(document.order)" />
+                            <input type="button" name="calcBtn" value="Calculate!" onclick="billme(document.order)" />
                             <input type="reset" name="resetBtn" value="Clear Form" />
                             <br>
                             <br>
-                            The F<sub>AH</sub> is: <input type="text" name="subtotalBox" size="6" value="0" /><br>
+                            The F<sub>A</sub> is: <input type="text" name="subtotalBox" size="6" value="0" /><br>
     -->
 </div>
             </div>
